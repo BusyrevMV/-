@@ -9,26 +9,41 @@ using Emgu.CV;
 
 namespace Паркинг
 {    
-    class Camera
+    public class Camera
     {
         static string magaz = "http://95.161.181.204:80/mjpg/video.mjpg?COUNTER";
         private Object locker = new Object();
         private VideoCapture capture = null;
-        private bool updateFrame = false;
+        private bool updateBitmap = false;
+        private bool updateMat = false;
         private Mat _frame;
         private Mat frame;
+        public string url;
+        public string login;
+        public string pass;
+        public string name;
+        public Rectangle rectangle = new Rectangle(0, 0, 10000, 10000);
+        public bool oneNumber = true;
+        public int direction = 0;
 
         public int Connect(string url, string login = "", string pass = "")
         {
             if (url.IndexOf("://") < 1)
             {
-                return 1;
+                url = login + ":" + pass + "@" + url;
+            }
+            else
+            {
+                url = url.Insert(url.IndexOf("://") + 3, login + ":" + pass + "@");
             }
 
-            url = url.Insert(url.IndexOf("://") + 3, login + ":" + pass + "@"); 
+            this.url = url;
+            this.login = login;
+            this.pass = pass;
+
             try
             {
-                capture = new VideoCapture(url);
+                capture = new VideoCapture(url);                
                 capture.ImageGrabbed += ProcessFrame;
                 _frame = new Mat();
                 capture.Start();
@@ -36,10 +51,30 @@ namespace Паркинг
             }
             catch (NullReferenceException excpt)
             {
-                MessageBox.Show(excpt.Message);
+                //MessageBox.Show(excpt.Message);
+                return 0;
             }
 
-            return 0;
+            return 1;
+        }
+
+        public int Reconnect()
+        {          
+            try
+            {
+                capture = new VideoCapture(url);
+                capture.ImageGrabbed += ProcessFrame;
+                _frame = new Mat();
+                capture.Start();
+
+            }
+            catch (NullReferenceException excpt)
+            {
+                //MessageBox.Show(excpt.Message);
+                return 0;
+            }
+
+            return 1;
         }
 
         private void ProcessFrame(object sender, EventArgs arg)
@@ -56,8 +91,9 @@ namespace Паркинг
             lock (locker)
             {
                 frame = value.Clone();
-                updateFrame = true;
-            }
+                updateBitmap = true;
+                updateMat = true;
+    }
         }
 
         public void Disconnect()
@@ -67,13 +103,32 @@ namespace Паркинг
                 capture.Dispose();
         }
 
-        public Bitmap GetFrame()
+        public Bitmap GetBitmap()
         {
             lock (locker)
             {
-                updateFrame = false;
+                updateBitmap = false;
                 return _frame.Bitmap;
             }
+        }
+
+        public Mat GetMat()
+        {
+            lock (locker)
+            {
+                updateMat = false;
+                return _frame;
+            }
+        }
+
+        public bool GetUpdateMat()
+        {                
+            return updateMat;            
+        }
+
+        public bool GetUpdateBitmap()
+        {
+            return updateBitmap;
         }
     }
 }
