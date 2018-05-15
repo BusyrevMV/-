@@ -289,8 +289,7 @@ namespace Паркинг
                 if (numbers.Count > 0)
                 {
                     NewNumbersDetect(numbers);
-                }
-                // дальше реализация и вызов события
+                }                
             }
         }
     }
