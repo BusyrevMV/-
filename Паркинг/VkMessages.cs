@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System.Collections.ObjectModel;
 using VkNet.Model.Attachments;
+using System.Net;
 
 namespace Паркинг
 {
@@ -45,6 +46,14 @@ namespace Паркинг
 
                 return await response.Content.ReadAsStringAsync();
             }
+        }
+
+        private ReadOnlyCollection<Document> DocsToVK(string path)
+        {
+            var uploadServer = vkAcc.Docs.GetUploadServer();
+            WebClient web = new WebClient();
+            var responseFile = Encoding.ASCII.GetString(web.UploadFile(uploadServer.UploadUrl, path));
+            return vkAcc.Docs.Save(responseFile, path);
         }
 
         public VkMessages(VkApi value)
@@ -90,6 +99,29 @@ namespace Паркинг
                 UserId = id,
                 Message = msg,
                 Attachments = photo,
+                ForwardMessages = new long[] { answer }
+            });
+        }
+
+        public void SendMsg(int id, string msg, string pathDoc)
+        {
+            ReadOnlyCollection<Document> document = DocsToVK(pathDoc);
+            vkAcc.Messages.SendAsync(new MessagesSendParams
+            {
+                UserId = id,
+                Message = msg,
+                Attachments = document
+            });
+        }
+
+        public void SendMsg(int id, string msg, string pathDoc, long answer)
+        {
+            ReadOnlyCollection<Document> document = DocsToVK(pathDoc);
+            vkAcc.Messages.SendAsync(new MessagesSendParams
+            {
+                UserId = id,
+                Message = msg,
+                Attachments = document,
                 ForwardMessages = new long[] { answer }
             });
         }
