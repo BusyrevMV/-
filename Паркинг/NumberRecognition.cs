@@ -49,7 +49,8 @@ namespace Паркинг
             _ocr.SetImage(image);
             _ocr.Recognize();
             string text = (_ocr.GetUTF8Text()).ToUpper();
-            for(int i = 0; i < text.Length; i++)
+            //text.Remove(text.Length - 4);
+            for (int i = 0; i < text.Length; i++)
             {
                 if (whiteList.IndexOf(text[i]) < 0)
                 {

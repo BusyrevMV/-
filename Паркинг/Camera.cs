@@ -11,20 +11,20 @@ namespace Паркинг
 {    
     public class Camera
     {
-        static string magaz = "http://95.161.181.204:80/mjpg/video.mjpg?COUNTER";
         private Object locker = new Object();
         private VideoCapture capture = null;
         private bool updateBitmap = false;
         private bool updateMat = false;
         private Mat _frame;
         private Mat frame;
+
         public string url;
         public string login;
         public string pass;
-        public string name;
         public Rectangle rectangle = new Rectangle(0, 0, 10000, 10000);
         public bool oneNumber = true;
         public int direction = 0;
+        public string camName;
 
         public int Connect(string url, string login = "", string pass = "")
         {

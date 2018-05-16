@@ -21,7 +21,7 @@ namespace Паркинг
            List<IInputOutputArray> licensePlateImagesList,
            List<IInputOutputArray> filteredLicensePlateImagesList,
            List<RotatedRect> detectedLicensePlateRegionList)
-        {
+        {             
             List<String> licenses = new List<String>();
             using (Mat gray = new Mat())
             using (Mat smallGray = new Mat())
@@ -29,11 +29,15 @@ namespace Паркинг
             using (Mat canny = new Mat())
             using (VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint())
             {
-                CvInvoke.CvtColor(img, gray, ColorConversion.Bgr2Gray);
-                CvInvoke.Canny(gray, canny, 100, 50, 3, false);
-                int[,] hierachy = CvInvoke.FindContourTree(canny, contours, ChainApproxMethod.ChainApproxSimple);
+                try
+                {
+                    CvInvoke.CvtColor(img, gray, ColorConversion.Bgr2Gray);
+                    CvInvoke.Canny(gray, canny, 100, 50, 3, false);
+                    int[,] hierachy = CvInvoke.FindContourTree(canny, contours, ChainApproxMethod.ChainApproxSimple);
 
-                FindLicensePlate(contours, hierachy, 0, gray, canny, licensePlateImagesList, filteredLicensePlateImagesList, detectedLicensePlateRegionList, licenses);
+                    FindLicensePlate(contours, hierachy, 0, gray, canny, licensePlateImagesList, filteredLicensePlateImagesList, detectedLicensePlateRegionList, licenses);
+                }
+                catch { }
             }
             return licenses;
         }

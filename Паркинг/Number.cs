@@ -18,5 +18,9 @@ namespace Паркинг
         /// -1 едет от камеры, 1 едет к камере, 0 не известно
         /// </summary>
         public int direction = 0;
+        /// <summary>
+        /// -1 не точно, 1 точно, 0 не известно
+        /// </summary>
+        public int accuracy = 0;
     }
 }

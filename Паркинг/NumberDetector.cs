@@ -55,6 +55,11 @@ namespace Паркинг
             isRun = false;
         }
 
+        public bool isRunning()
+        {
+            return isRun;
+        }
+
         private void DetectorOneNum()
         {
             List<IInputOutputArray> licensePlateImagesList;
@@ -70,7 +75,7 @@ namespace Паркинг
                 if (!camera.GetUpdateMat())
                 {
                     err = 0;
-                    while (!camera.GetUpdateMat() || err < 30)
+                    while (!camera.GetUpdateMat() && err < 30)
                     {
                         Thread.Sleep(100);
                         err += 1;
@@ -140,7 +145,7 @@ namespace Паркинг
                         j = 0;
                         while (j < text.Count)
                         {
-                            if (text[j].Length < 2 && (
+                            if (text[j].Length < 5 && (
                                 licenseBoxList[j].Center.X < camera.rectangle.X
                                 || licenseBoxList[j].Center.X > camera.rectangle.Width - camera.rectangle.X
                                 || licenseBoxList[j].Center.Y < camera.rectangle.Y
@@ -168,6 +173,14 @@ namespace Паркинг
                     if (lastNumber != number.text)
                     {                        
                         lastNumber = number.text;
+                        if (camera.direction != 0)
+                        {
+                            number.direction = number.direction / Math.Abs(number.direction) * camera.direction;
+                        }
+                        else
+                        {
+                            number.direction = 0;
+                        }
                         NewNumberDetect(number);
                     }
 
@@ -221,7 +234,7 @@ namespace Паркинг
                 int j = 0;
                 while (j < text.Count)
                 {
-                    if (text[j].Length < 4 && (
+                    if (text[j].Length < 9 && (
                         licenseBoxList[j].Center.X < camera.rectangle.X
                         || licenseBoxList[j].Center.X > camera.rectangle.Width - camera.rectangle.X
                         || licenseBoxList[j].Center.Y < camera.rectangle.Y
