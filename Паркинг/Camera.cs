@@ -81,8 +81,8 @@ namespace Паркинг
         {
             if (capture != null && capture.Ptr != IntPtr.Zero)
             {                
-                capture.Retrieve(_frame, 0);
-                SetFrame(_frame);
+                capture.Retrieve(frame, 0);
+                SetFrame(frame);
             }
         }
 
@@ -90,7 +90,7 @@ namespace Паркинг
         {
             lock (locker)
             {
-                frame = value.Clone();
+                _frame = value.Clone();
                 updateBitmap = true;
                 updateMat = true;
     }

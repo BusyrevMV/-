@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Паркинг
 {
-    public class CameraControl
+    public class ParkingControl
     {
         private List<NumberDetector> numberDetectors = new List<NumberDetector>();
         private List<Camera> cameras = new List<Camera>();

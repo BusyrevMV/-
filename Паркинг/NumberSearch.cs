@@ -6,11 +6,8 @@ using System.Drawing;
 using System.Threading.Tasks;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
-using Emgu.CV.OCR;
 using Emgu.CV.Structure;
 using Emgu.CV.Util;
-using Emgu.Util;
-using System.IO;
 
 namespace Паркинг
 {

@@ -45,37 +45,38 @@ namespace Паркинг
         }
 
         public bool Authorization()
-        {
-            StreamReader reader = new StreamReader("Настройки\\ВкБот.cfg");
-            while (!reader.EndOfStream)
-            {
-                string[] str = reader.ReadLine().Split("=".ToCharArray());
-                switch (str[0].ToLower())
-                {
-                    case "applicationid":
-                        {
-                            ulong x;
-                            if (ulong.TryParse(str[1], out x)) appId = x;
-                            break;
-                        }
-                    case "login":
-                        {
-                            login = str[1];
-                            break;
-                        }
-
-                    case "password":
-                        {
-                            pass = str[1];
-                            break;
-                        }                    
-                }
-            }
-
-            reader.Close();
+        {            
             VkApi vkAcc = new VkApi();
             try
             {
+                StreamReader reader = new StreamReader("Настройки\\ВкБот.cfg");
+                while (!reader.EndOfStream)
+                {
+                    string[] str = reader.ReadLine().Split("=".ToCharArray());
+                    switch (str[0].ToLower())
+                    {
+                        case "applicationid":
+                            {
+                                ulong x;
+                                if (ulong.TryParse(str[1], out x)) appId = x;
+                                break;
+                            }
+                        case "login":
+                            {
+                                login = str[1];
+                                break;
+                            }
+
+                        case "password":
+                            {
+                                pass = str[1];
+                                break;
+                            }
+                    }
+                }
+
+                reader.Close();
+
                 vkAcc.Authorize(new ApiAuthParams
                 {
                     ApplicationId = appId,

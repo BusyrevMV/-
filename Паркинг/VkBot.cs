@@ -13,16 +13,36 @@ namespace Паркинг
 {
     public class VkBot
     {
-        private static VkApi vkAcc;
+        private VkApi vkAcc;
         private LongPoolWatcher longPoolWatcher;
 
-        private static void MessagesRecievedDelegate(VkApi owner, ReadOnlyCollection<Message> messages)
+        private void MessagesRecievedDelegate(VkApi owner, ReadOnlyCollection<Message> messages)
         {
             foreach (Message msg in messages)
             {
                 if (msg.FromId != vkAcc.UserId)
                 {
-                    //обработка входящих
+                    string[] cmd = msg.Body.Split(Convert.ToChar(" "));
+                    switch (cmd[0])
+                    {
+                        case "инфо":
+                            {
+                                break;
+                            }
+                        case "свободно":
+                            {
+                                break;
+                            }
+                        case "отчет":
+                            {
+                                break;
+                            }                        
+                        default:
+                            {
+                                ErrMsg(msg.FromId.Value, msg.Id.Value);                                
+                                break;
+                            }
+                    }
                 }
             }
         }
@@ -64,6 +84,16 @@ namespace Паркинг
             }
 
             return true;
+        }
+
+        private void ErrMsg(long id, long answer)
+        {
+            vkAcc.Messages.SendAsync(new MessagesSendParams
+            {
+                UserId = id,
+                Message = "Ваша команда не распознаная",
+                ForwardMessages = new long[] { answer }
+            });
         }
     }
 }

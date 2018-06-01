@@ -14,7 +14,6 @@ namespace Паркинг
         private Camera camera;
         private NumberSearch numberSearch = new NumberSearch();
         private NumberRecognition numberRecognition = new NumberRecognition();
-        private Number number;
         private bool isRun = true;
         private Thread thread;
 
@@ -26,14 +25,7 @@ namespace Паркинг
         public NumberDetector(Camera cam)
         {
             camera = cam;
-        }
-        
-        public Number GetNumber()
-        {
-            Number result = number;
-            number = null;
-            return result;
-        }
+        }              
 
         public void Start()
         {

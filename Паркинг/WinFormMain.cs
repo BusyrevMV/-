@@ -14,7 +14,7 @@ namespace Паркинг
 {
     public partial class WinFormMain : Form
     {
-        private CameraControl cameraControl;
+        private ParkingControl cameraControl;
 
         private List<Camera> camList = new List<Camera>();
         private List<PictureBox> pictureList = new List<PictureBox>();
@@ -29,7 +29,7 @@ namespace Паркинг
 
         private void WinFormMain_Load(object sender, EventArgs e)
         {
-            cameraControl = new CameraControl();
+            cameraControl = new ParkingControl();
             int err = cameraControl.CameraControlCreate();
             cameraControl.NewNotyfNumber += NewNotyfNumber;
             if (err >= 8)

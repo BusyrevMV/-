@@ -130,7 +130,7 @@
     <Compile Include="VkBot.cs" />
     <Compile Include="VkControl.cs" />
     <Compile Include="VkMessages.cs" />
-    <Compile Include="CameraControl.cs" />
+    <Compile Include="ParkingControl.cs" />
     <Compile Include="WinFormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
