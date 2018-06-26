@@ -65,6 +65,7 @@ namespace Паркинг
                 capture = new VideoCapture(url);
                 capture.ImageGrabbed += ProcessFrame;
                 _frame = new Mat();
+                frame = new Mat();
                 capture.Start();
 
             }
@@ -108,7 +109,7 @@ namespace Паркинг
             lock (locker)
             {
                 updateBitmap = false;
-                return _frame.Bitmap;
+                return new Bitmap(_frame.Bitmap);
             }
         }
 

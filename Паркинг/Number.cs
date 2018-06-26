@@ -14,8 +14,9 @@ namespace Паркинг
         public IInputOutputArray filteredLicensePlateImages;
         public RotatedRect licenseBox;
         public string text;
+        public Mat photo;
         /// <summary>
-        /// -1 едет от камеры, 1 едет к камере, 0 не известно
+        /// -1 на парковку, 1 из парковки, 0 не известно
         /// </summary>
         public int direction = 0;
         /// <summary>

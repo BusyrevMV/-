@@ -115,13 +115,14 @@ namespace Паркинг
                 if (text.Count == 1)
                 {
                     Number number = new Number();
+                    number.photo = camera.GetMat();
                     number.text = text[0];
                     number.licensePlateImages = licensePlateImagesList[0];
                     number.filteredLicensePlateImages = filteredLicensePlateImagesList[0];
                     number.licenseBox = licenseBoxList[0];
                     System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
                     // проверка передвижения
-                    while (isRun && watch.ElapsedMilliseconds < 1500)
+                    while (isRun && watch.ElapsedMilliseconds < 1000)
                     {
                         licensePlateImagesList = new List<IInputOutputArray>();
                         filteredLicensePlateImagesList = new List<IInputOutputArray>();
@@ -264,6 +265,7 @@ namespace Паркинг
                         if (Math.Abs((DateTime.Now.Second - lastNumsTime[lastNums.IndexOf(text[i])].Second)) < 5)
                         {
                             Number number = new Number();
+                            number.photo = camera.GetMat();
                             number.text = text[i];
                             number.licensePlateImages = licensePlateImagesList[i];
                             number.filteredLicensePlateImages = filteredLicensePlateImagesList[i];

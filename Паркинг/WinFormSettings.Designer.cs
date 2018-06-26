@@ -63,13 +63,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -175,9 +175,9 @@
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(244, 197);
+            this.groupBox1.Location = new System.Drawing.Point(244, 174);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(251, 215);
+            this.groupBox1.Size = new System.Drawing.Size(251, 133);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Направление камеры";
@@ -203,6 +203,7 @@
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Не задавать направление";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Visible = false;
             // 
             // radioButton1
             // 
@@ -225,6 +226,7 @@
             this.checkBox1.TabIndex = 9;
             this.checkBox1.Text = "Режим КПП";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // textBox4
@@ -447,25 +449,37 @@
             this.tabPage2.Text = "ВК бот";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // button5
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(8, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(232, 20);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Идентификатор приложения";
+            this.button5.Location = new System.Drawing.Point(117, 149);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "Сохранить";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // label10
+            // textBox11
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(8, 54);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(55, 20);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Логин";
+            this.textBox11.Location = new System.Drawing.Point(81, 98);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.PasswordChar = '*';
+            this.textBox11.Size = new System.Drawing.Size(135, 20);
+            this.textBox11.TabIndex = 5;
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(69, 54);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(147, 20);
+            this.textBox10.TabIndex = 4;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(246, 15);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(100, 20);
+            this.textBox9.TabIndex = 3;
             // 
             // label11
             // 
@@ -477,37 +491,25 @@
             this.label11.TabIndex = 2;
             this.label11.Text = "Пароль";
             // 
-            // textBox9
+            // label10
             // 
-            this.textBox9.Location = new System.Drawing.Point(246, 15);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 20);
-            this.textBox9.TabIndex = 3;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(8, 54);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(55, 20);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Логин";
             // 
-            // textBox10
+            // label9
             // 
-            this.textBox10.Location = new System.Drawing.Point(69, 54);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(147, 20);
-            this.textBox10.TabIndex = 4;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(81, 98);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.PasswordChar = '*';
-            this.textBox11.Size = new System.Drawing.Size(135, 20);
-            this.textBox11.TabIndex = 5;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(117, 149);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Сохранить";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(8, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(232, 20);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Идентификатор приложения";
             // 
             // WinFormSettings
             // 

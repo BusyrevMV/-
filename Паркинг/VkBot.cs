@@ -14,6 +14,7 @@ namespace Паркинг
     public class VkBot
     {
         private VkApi vkAcc;
+        private VkMessages vkMessages;
         private LongPoolWatcher longPoolWatcher;
 
         private void MessagesRecievedDelegate(VkApi owner, ReadOnlyCollection<Message> messages)
@@ -27,14 +28,52 @@ namespace Паркинг
                     {
                         case "инфо":
                             {
+                                DataBaseCenter dataBase = DataBaseCenter.Create();
+                                string str = dataBase.StatusAvto(msg.FromId.Value);
+                                vkMessages.SendMsg(msg.FromId.Value, str);
                                 break;
                             }
                         case "свободно":
                             {
+                                DataBaseCenter dataBase = DataBaseCenter.Create();
+                                string str = dataBase.BusyParking();
+                                vkMessages.SendMsg(msg.FromId.Value, str);
+                                break;
+                            }
+                        case "счет":
+                            {
+                                /*DataBaseCenter dataBase = DataBaseCenter.Create();
+                                string str = dataBase.BusyParking();
+                                vkMessages.SendMsg(msg.FromId.Value, str);*/
                                 break;
                             }
                         case "отчет":
                             {
+                                switch (cmd[1])
+                                {
+                                    case "платежи":
+                                        {
+                                            Report report = new Report();
+                                            string path = report.CreateReportTransaction(msg.FromId.Value, cmd[2], cmd[3]);
+                                            vkMessages.SendMsg(msg.FromId.Value, "Отчет готов", path);
+                                            System.IO.File.Delete(path);
+                                            break;
+                                        }
+                                    case "парковка":
+                                        {
+                                            Report report = new Report();
+                                            string path = report.CreateReportTransit(msg.FromId.Value, cmd[2], cmd[3]);
+                                            vkMessages.SendMsg(msg.FromId.Value, "Отчет готов", path);
+                                            System.IO.File.Delete(path);
+                                            break;
+                                        }
+                                    default:
+                                        {
+                                            ErrMsg(msg.FromId.Value, msg.Id.Value);
+                                            break;
+                                        }
+                                }
+
                                 break;
                             }                        
                         default:
@@ -47,9 +86,10 @@ namespace Паркинг
             }
         }
 
-        public VkBot(VkApi value)
+        public VkBot(VkApi vkAcc, VkMessages vkMessages)
         {
-            vkAcc = value;
+            this.vkAcc = vkAcc;
+            this.vkMessages = vkMessages;
         }
 
         public bool BotStart()

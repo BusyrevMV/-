@@ -14,13 +14,16 @@ namespace Паркинг
         private List<NumberDetector> numberDetectors = new List<NumberDetector>();
         private List<Camera> cameras = new List<Camera>();
         private VkControl vkControl = new VkControl();
+        private DataBaseCenter dataBase = DataBaseCenter.Create();
+        private User user;
 
-        public delegate void NewNotyf(Number number, InfoOfNumber info);
+        public delegate void NewNotyf(Number number, HistoryTransit info);
         public event NewNotyf NewNotyfNumber;
         private List<string> numTemplate = new List<string>();        
 
-        public int CameraControlCreate()
+        public int CameraControlCreate(User user)
         {
+            this.user = user;
             int result = 0;
             try
             {
@@ -110,9 +113,25 @@ namespace Паркинг
             else
             {
                 number.accuracy = 1;
-            }            
-            // добавить поиск по базе и уведомление через вк
-            NewNotyfNumber(number, null);
+            }
+
+            HistoryTransit historyTransit = null;
+            if (number.accuracy != -1)
+            {
+                if (number.direction == dataBase.CheckDirection(number, user))
+                {
+                    historyTransit = dataBase.NumberToHistory(number, user);
+                }
+                else
+                {
+                    number.accuracy = -1;
+                    NewNotyfNumber(number, null);
+                    return;
+                }
+            }
+
+            NewNotyfNumber(number, historyTransit);
+            VkNotyf(number, historyTransit);            
         }
 
         private void NewNumbersDetected(List<Number> number)
@@ -135,9 +154,45 @@ namespace Паркинг
 
                 if (numTemplate.IndexOf(num) < 0)
                 {
-                    // добавить поиск по базе
-                    NewNotyfNumber(number[j], null);
+                    HistoryTransit historyTransit = null;
+                    historyTransit = dataBase.NumberToHistory(number[j], user);
+                    NewNotyfNumber(number[j], historyTransit);
+                    VkNotyf(number[j], historyTransit);
                 }                
+            }
+        }
+
+        public async Task<HistoryTransit> AddTransit(string num, int direction, int camera)
+        {
+            Number number = new Number();
+            number.text = num;
+            if (number.direction == dataBase.CheckDirection(number, user))
+            {
+                number.photo = cameras[camera].GetMat();
+                HistoryTransit historyTransit = null;
+                historyTransit = dataBase.NumberToHistory(number, user, direction);
+                NewNotyfNumber(number, historyTransit);
+                VkNotyf(number, historyTransit);
+                return historyTransit;
+            }
+
+            return null;
+        }
+
+        private void VkNotyf(Number number, HistoryTransit historyTransit)
+        {
+            NewNotyfNumber(number, historyTransit);
+            List<int> contacts = dataBase.GetContacts(number.text);
+            foreach (int id in contacts)
+            {
+                vkControl.vkMessages.SendMsg(
+                    id,
+                    string.Format(
+                        "Гос. номер <{0}>, совершен {1}{2}",
+                        number.text,
+                        number.direction == 1 ? "выезд" : (number.direction == -1 ? "въезд" : "проезд"),
+                        (historyTransit != null && historyTransit.dateExit != "") ? ". Стоимость составила " + historyTransit.cost : ""),
+                    number.photo.Bitmap);
             }
         }
     }

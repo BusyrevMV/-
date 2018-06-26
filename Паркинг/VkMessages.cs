@@ -61,7 +61,7 @@ namespace Паркинг
             vkAcc = value;
         }
 
-        public void SendMsg(int id, string msg)
+        public void SendMsg(long id, string msg)
         {
             vkAcc.Messages.SendAsync(new MessagesSendParams
             {
@@ -70,7 +70,7 @@ namespace Паркинг
             });
         }
 
-        public void SendMsg(int id, string msg, long answer)
+        public void SendMsg(long id, string msg, long answer)
         {
             vkAcc.Messages.SendAsync(new MessagesSendParams
             {
@@ -80,7 +80,7 @@ namespace Паркинг
             });
         }
 
-        public void SendMsg(int id, string msg, Image img)
+        public void SendMsg(long id, string msg, Image img)
         {
             ReadOnlyCollection<Photo> photo = ImageToVK(img);
             vkAcc.Messages.SendAsync(new MessagesSendParams
@@ -91,7 +91,7 @@ namespace Паркинг
             });
         }
 
-        public void SendMsg(int id, string msg, Image img, long answer)
+        public void SendMsg(long id, string msg, Image img, long answer)
         {
             ReadOnlyCollection<Photo> photo = ImageToVK(img);
             vkAcc.Messages.SendAsync(new MessagesSendParams
@@ -103,7 +103,7 @@ namespace Паркинг
             });
         }
 
-        public void SendMsg(int id, string msg, string pathDoc)
+        public void SendMsg(long id, string msg, string pathDoc)
         {
             ReadOnlyCollection<Document> document = DocsToVK(pathDoc);
             vkAcc.Messages.SendAsync(new MessagesSendParams
@@ -114,7 +114,7 @@ namespace Паркинг
             });
         }
 
-        public void SendMsg(int id, string msg, string pathDoc, long answer)
+        public void SendMsg(long id, string msg, string pathDoc, long answer)
         {
             ReadOnlyCollection<Document> document = DocsToVK(pathDoc);
             vkAcc.Messages.SendAsync(new MessagesSendParams

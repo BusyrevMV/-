@@ -224,6 +224,7 @@ namespace Паркинг
             textBox6.Text = camera.rectangle.Y.ToString();
             textBox7.Text = camera.rectangle.Height.ToString();
             textBox8.Text = camera.rectangle.Width.ToString();
+            pictureBox1.Image = bmp;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -275,12 +276,11 @@ namespace Паркинг
                 return;
             }
 
-            File.Delete("Настройки\\ВкБот.cfg");
-            StreamWriter writer = new StreamWriter("Настройки\\ВкБот.cfg");
-            writer.WriteLine("ApplicationId=" + textBox9.Text);
-            writer.WriteLine("Login=" + textBox10.Text);
-            writer.WriteLine("Password=" + textBox11.Text);
-            writer.Close();
+            DataBaseCenter dataBase = DataBaseCenter.Create();
+            dataBase.RunCommand("UPDATE Настройки SET значение='" + 
+                textBox9.Text + " | " + 
+                textBox10.Text + " | " + 
+                textBox11.Text + "' WHERE название='vk'");                        
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -39,8 +40,8 @@ namespace Паркинг
                 return false;
             }
 
-            vkBot = new VkBot(vkAcc);
             vkMessages = new VkMessages(vkAcc);
+            vkBot = new VkBot(vkAcc, vkMessages);
             return true;
         }
 
@@ -49,34 +50,14 @@ namespace Паркинг
             VkApi vkAcc = new VkApi();
             try
             {
-                StreamReader reader = new StreamReader("Настройки\\ВкБот.cfg");
-                while (!reader.EndOfStream)
-                {
-                    string[] str = reader.ReadLine().Split("=".ToCharArray());
-                    switch (str[0].ToLower())
-                    {
-                        case "applicationid":
-                            {
-                                ulong x;
-                                if (ulong.TryParse(str[1], out x)) appId = x;
-                                break;
-                            }
-                        case "login":
-                            {
-                                login = str[1];
-                                break;
-                            }
-
-                        case "password":
-                            {
-                                pass = str[1];
-                                break;
-                            }
-                    }
-                }
-
-                reader.Close();
-
+                DataBaseCenter dataBase = DataBaseCenter.Create();
+                DataTable dataTable = dataBase.GetDataTable("SELECT значение FROM Настройки WHERE название='vk'");
+                if (dataTable.Rows.Count == 0)
+                    return false;
+                string[] str = dataTable.Rows[0].ItemArray[0].ToString().Split("|".ToCharArray());
+                ulong.TryParse(str[0], out appId);
+                login = str[1];
+                pass = str[2];
                 vkAcc.Authorize(new ApiAuthParams
                 {
                     ApplicationId = appId,
@@ -89,9 +70,9 @@ namespace Паркинг
             {
                 return false;
             }
-
-            vkBot = new VkBot(vkAcc);
+                        
             vkMessages = new VkMessages(vkAcc);
+            vkBot = new VkBot(vkAcc, vkMessages);
             return true;
         }
     }

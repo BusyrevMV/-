@@ -20,17 +20,19 @@ namespace Паркинг
         private List<PictureBox> pictureList = new List<PictureBox>();
         private List<Label> labelList = new List<Label>();
         private List<Number> numList = new List<Number>();
+        private User user;
         
-        public WinFormMain()
+        public WinFormMain(User user)
         {
             InitializeComponent();
             pictureList.Add(pictureBox1);
+            this.user = user;
         }                
 
         private void WinFormMain_Load(object sender, EventArgs e)
         {
             cameraControl = new ParkingControl();
-            int err = cameraControl.CameraControlCreate();
+            int err = cameraControl.CameraControlCreate(user);
             cameraControl.NewNotyfNumber += NewNotyfNumber;
             if (err >= 8)
             {
@@ -117,7 +119,7 @@ namespace Паркинг
             }
         }
 
-        private void NewNotyfNumber(Number number, InfoOfNumber info)
+        private void NewNotyfNumber(Number number, HistoryTransit info)
         {
             numList.Add(number);
             if (numList.Count > 30)
@@ -157,14 +159,9 @@ namespace Паркинг
                 {
                     string str = "";
                     str += number.text + ":\n";
-                    if (info.balckList)
+                    if (info.blackList)
                     {
                         str += "Данный гос. номер в черном списке! \n";
-                    }
-
-                    if (info.debt > 0)
-                    {
-                        str += "Владелец данного номера является должником! Долг " + info.debt.ToString() + "\n";
                     }
 
                     if (info.comment.Length > 0)
@@ -172,7 +169,7 @@ namespace Паркинг
                         str += "Комментарий " + info.comment + "\n";
                     }
 
-                    if (info.balckList || info.debt > 0 || info.comment.Length > 0)
+                    if (info.blackList || info.comment.Length > 0)
                     {
                         richTextBox1.Text = richTextBox1.Text + "\n" + str;
                     }
