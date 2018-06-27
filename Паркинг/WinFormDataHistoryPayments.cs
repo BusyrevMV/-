@@ -31,7 +31,7 @@ namespace Паркинг
         private void button1_Click(object sender, EventArgs e)
         {
             историятранзакцийBindingSource.Filter = string.Format(
-                "дата between '{0}' and '{1}'",
+                "дата >= '{0}' and дата <='{1}'",
                 dateTimePicker1.Value.ToString("yyyy-mm-dd HH:mm"),
                 dateTimePicker2.Value.ToString("yyyy-mm-dd HH:mm"));
         }

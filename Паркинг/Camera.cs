@@ -99,7 +99,8 @@ namespace Паркинг
 
         public void Disconnect()
         {
-            capture.Stop();
+            if (capture != null)
+                capture.Stop();
             if (capture != null)
                 capture.Dispose();
         }

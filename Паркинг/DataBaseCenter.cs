@@ -56,6 +56,11 @@ namespace Паркинг
 
         public int RunCommand(string sql, Bitmap bitmap)
         {
+            if (bitmap == null)
+            {
+                bitmap = new Bitmap(100, 100);
+            }
+
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
             lock (dataBaseCenter)
@@ -73,34 +78,42 @@ namespace Паркинг
             StringBuilder sb = new StringBuilder();
             DataTable dataTable = GetDataTable(string.Format(@"Select госНомер, 
 (SELECT ИсторияПроездов.въехалДата FROM ИсторияПроездов WHERE ИсторияПроездов.авто=Авто.id ORDER BY ИсторияПроездов.въехалДата DESC LIMIT 1),
-(SELECT ИсторияПроездов.выехалДата FROM ИсторияПроездов WHERE ИсторияПроездов.авто=Авто.id ORDER BY ИсторияПроездов.въехалДата DESC LIMIT 1), Клиенты.id, балансСчета
+(SELECT ИсторияПроездов.выехалДата FROM ИсторияПроездов WHERE ИсторияПроездов.авто=Авто.id ORDER BY ИсторияПроездов.въехалДата DESC LIMIT 1)
 From Клиенты
     JOIN КонтактыКлиентов ON КонтактыКлиентов.клиент=Клиенты.id
     join Авто ON Авто.клиент=Клиенты.id
 WHERE
 	КонтактыКлиентов.контакт='{0}'", idVk));
+            if (dataTable.Rows.Count == 0)
+                throw new Exception();            
+
             for(int i = 0; i < dataTable.Rows.Count; i++)
             {
-                if (dataTable.Rows[0].ItemArray[2].ToString() == "")
+                if (dataTable.Rows[i].ItemArray[2].ToString() == "" && dataTable.Rows[i].ItemArray[1].ToString() != "")
                 {
                     sb.AppendLine(string.Format(
                         "Авто {0} на парковке с {1}",
-                        dataTable.Rows[0].ItemArray[0],
-                        dataTable.Rows[0].ItemArray[1]));
+                        dataTable.Rows[i].ItemArray[0],
+                        dataTable.Rows[i].ItemArray[1]));
                 }
-                else
+
+                if (dataTable.Rows[i].ItemArray[1].ToString() == "" &&
+                dataTable.Rows[i].ItemArray[2].ToString() == "")
+                {
+                    sb.AppendLine(string.Format(
+                            "Авто {0} еще никогда не парковалось",
+                            dataTable.Rows[i].ItemArray[0]));
+                }
+
+                if (dataTable.Rows[i].ItemArray[2].ToString() != "" && dataTable.Rows[i].ItemArray[1].ToString() == "")
                 {
                     sb.AppendLine(string.Format(
                         "Авто {0} уехало {1}",
-                        dataTable.Rows[0].ItemArray[0],
-                        dataTable.Rows[0].ItemArray[2]));
+                        dataTable.Rows[i].ItemArray[0],
+                        dataTable.Rows[i].ItemArray[2]));
                 }
             }
 
-            sb.AppendLine(string.Format(
-                        "Номер счета {0}, баланс {1}",
-                        dataTable.Rows[0].ItemArray[3],
-                        dataTable.Rows[0].ItemArray[4]));
             return sb.ToString();
         }
 
@@ -114,12 +127,14 @@ WHERE
                     sqlConnector);
                 DataTable dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
-                if (dataTable.Rows.Count < 1 && dataTable.Rows[0].ItemArray[0].ToString() == pass)
+                if (dataTable.Rows.Count < 1 || dataTable.Rows[0].ItemArray[0].ToString() != pass)
                 {
                     return null;
                 }
 
-                return new User((int)dataTable.Rows[0].ItemArray[1], (int)dataTable.Rows[0].ItemArray[2]);
+                int p = -1;
+                int.TryParse(dataTable.Rows[0].ItemArray[2].ToString(), out p);
+                return new User((int)dataTable.Rows[0].ItemArray[1], p, login);
             }
         }
 
@@ -129,7 +144,7 @@ WHERE
             DataTable dataTable = GetDataTable(string.Format("SELECT контакт FROM Авто Join Клиенты ON Клиенты.id = Авто.клиент Join КонтактыКлиентов ON КонтактыКлиентов.клиент = Клиенты.id WHERE госНомер = '{0}' and типКонтакта = 'ВКонтакте'", number));
             for(int i = 0; i < dataTable.Rows.Count; i++)
             {
-                contacts.Add((int)dataTable.Rows[i].ItemArray[0]);
+                contacts.Add(Convert.ToInt32(dataTable.Rows[i].ItemArray[0].ToString()));
             }
 
             return contacts;
@@ -141,7 +156,7 @@ WHERE
             {
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(
                     string.Format(
-                        "SETECT {0} FROM Группы WHERE id=(SELECT группа FROM Пользователи WHERE логин='{1}')", 
+                        "SELECT {0} FROM Группы WHERE id=(SELECT группа FROM Пользователи WHERE id='{1}')", 
                         right, 
                         user.id), 
                     sqlConnector);
@@ -210,7 +225,7 @@ WHERE
             int avto = (int)dataTable.Rows[0].ItemArray[0];
             dataTable = GetDataTable(
                 string.Format(
-                    "SELECT выехалДата, id FROM ИсторияПроездов WHERE авто='{0}' and парковка='{1}' order by выехалДата DESC LIMIT 1",
+                    "SELECT выехалДата, id FROM ИсторияПроездов WHERE авто='{0}' and парковка='{1}' order by выехалДата ASC LIMIT 1",
                     avto,
                     user.parking));
             if (dataTable.Rows.Count < 1)
@@ -228,43 +243,96 @@ WHERE
 
         public HistoryTransit NumberToHistory(Number number, User user)
         {
-            DataTable dataTable = GetDataTable(string.Format("SELECT id FROM Авто WHERE госНомер='{0}'", number.text));
+            HistoryTransit transit;
+            DataTable dataTable = GetDataTable(string.Format("SELECT id, черныйСписок FROM Авто WHERE госНомер='{0}'", number.text));
             if (dataTable.Rows.Count < 1)
             {
                 RunCommand(string.Format("INSERT INTO Авто (госНомер) VALUES('{0}')", number.text));
-                dataTable = GetDataTable(string.Format("SELECT id FROM Авто WHERE госНомер='{0}'", number.text));
+                dataTable = GetDataTable(string.Format("SELECT id, черныйСписок FROM Авто WHERE госНомер='{0}'", number.text));
             }
 
             int avto = (int)dataTable.Rows[0].ItemArray[0];
+            bool black = dataTable.Rows[0].ItemArray[1].ToString() == "1" ? true : false;
+            if (black)
+            {
+                dataTable = GetDataTable(
+                string.Format(
+                    @"SELECT фио, серияНомер_ВУ, балансСчета, списокВидовАвто.авто, госНомер, черныйСписок, комментарий, въехалДата, выехалДата, стоимость
+FROM ИсторияПроездов 
+	FULL JOIN Авто ON Авто.id=ИсторияПроездов.авто
+    FULL JOIN Клиенты ON Клиенты.id=Авто.клиент
+    FULL JOIN списокВидовАвто ON списокВидовАвто.id=Авто.авто
+WHERE госНомер='{0}'
+order by въехалДата DESC
+LIMIT 1",
+                    number.text,
+                    user.parking));
+                transit = new HistoryTransit
+                {
+                    fio = dataTable.Rows[0].ItemArray[0].ToString(),
+                    serialNum = dataTable.Rows[0].ItemArray[1].ToString(),
+                    balance = dataTable.Rows[0].ItemArray[2].ToString(),
+                    avto = dataTable.Rows[0].ItemArray[3].ToString(),
+                    LicenseNum = dataTable.Rows[0].ItemArray[04].ToString(),
+                    blackList = (bool)dataTable.Rows[0].ItemArray[5],
+                    comment = dataTable.Rows[0].ItemArray[6].ToString(),
+                    added = false
+                };
+
+                return transit;
+            }
+
             dataTable = GetDataTable(
                 string.Format(
-                    "SELECT выехалДата, id FROM ИсторияПроездов WHERE авто='{0}' and парковка='{1}' order by выехалДата DESC LIMIT 1",
+                    "SELECT выехалДата, id FROM ИсторияПроездов WHERE авто='{0}' and парковка='{1}' order by выехалДата ASC LIMIT 1",
                     avto,
                     user.parking));
+            DateTime dateTime = DateTime.Now;
             if (dataTable.Rows.Count > 0)
             {
-                DateTime dateTime = DateTime.Now;
                 if (dataTable.Rows[0].ItemArray[0].ToString() == "")
                 {
-                    double price = CalcCost(avto, user, dateTime);
+                    decimal price = CalcCost(avto, user, dateTime);
                     RunCommand(
                         string.Format(
-                            "UPDATE ИсторияПроездов SET выехалДата={0}, стоимость='{1}', въехалФото='@image' WHERE id='{2}'",
+                            "UPDATE ИсторияПроездов SET выехалДата='{0}', стоимость='{1}', выехалФото=@image WHERE id='{2}'",
                             dateTime.ToString("yyyy-MM-dd HH:mm"),
-                            string.Format("0:F2", price),
-                            dataTable.Rows[0].ItemArray[1]),
+                            string.Format("{0:F2} ", price).Replace(",", "."),
+                            dataTable.Rows[0].ItemArray[1].ToString()),
                         number.photo.Bitmap);
+                    RunCommand(
+                        string.Format(
+                            "UPDATE Парковки SET занято = Парковки.занято - 1 WHERE Парковки.id = '{0}'",
+                            user.parking));
                 }
                 else
                 {
                     RunCommand(
                         string.Format(
-                            "INSERT INTO ИсторияПроездов (въехалДата, авто, парковка, въехалФото) VALUES('{0}', '{1}', '{2}', '@image')",
+                            "INSERT INTO ИсторияПроездов (въехалДата, авто, парковка, въехалФото) VALUES('{0}', '{1}', '{2}', @image)",
                             dateTime.ToString("yyyy-MM-dd HH:mm"),
                             avto,
                             user.parking),
                         number.photo.Bitmap);
+                    RunCommand(
+                        string.Format(
+                            "UPDATE Парковки SET занято = Парковки.занято + 1 WHERE Парковки.id = '{0}'",
+                            user.parking));
                 }
+            }
+            else
+            {
+                RunCommand(
+                    string.Format(
+                        "INSERT INTO ИсторияПроездов (въехалДата, авто, парковка, въехалФото) VALUES('{0}', '{1}', '{2}', @image)",
+                        dateTime.ToString("yyyy-MM-dd HH:mm"),
+                        avto,
+                        user.parking),
+                    number.photo.Bitmap);
+                RunCommand(
+                        string.Format(
+                            "UPDATE Парковки SET занято = Парковки.занято + 1 WHERE Парковки.id = '{0}'", 
+                            user.parking));
             }
 
             dataTable = GetDataTable(
@@ -274,30 +342,31 @@ FROM ИсторияПроездов
 	JOIN Авто ON Авто.id=ИсторияПроездов.авто
     JOIN Клиенты ON Клиенты.id=Авто.клиент
     JOIN списокВидовАвто ON списокВидовАвто.id=Авто.авто
-WHERE гос.Номер='{0}' and парковка='{1}'
+WHERE госНомер='{0}' and парковка='{1}'
 order by въехалДата DESC
 LIMIT 1",
                     number.text,
                     user.parking));
-            HistoryTransit transit = new HistoryTransit
+            transit = new HistoryTransit
             {
                 fio = dataTable.Rows[0].ItemArray[0].ToString(),
-                serialNum = dataTable.Rows[0].ItemArray[0].ToString(),
-                balance = dataTable.Rows[0].ItemArray[0].ToString(),
-                avto = dataTable.Rows[0].ItemArray[0].ToString(),
-                LicenseNum = dataTable.Rows[0].ItemArray[0].ToString(),
-                blackList = (bool)dataTable.Rows[0].ItemArray[0],
-                comment = dataTable.Rows[0].ItemArray[0].ToString(),
-                dateEnter = dataTable.Rows[0].ItemArray[0].ToString(),
-                dateExit = dataTable.Rows[0].ItemArray[0].ToString(),
-                cost = dataTable.Rows[0].ItemArray[0].ToString() == "" ? "0" : dataTable.Rows[0].ItemArray[0].ToString()
+                serialNum = dataTable.Rows[0].ItemArray[1].ToString(),
+                balance = dataTable.Rows[0].ItemArray[2].ToString(),
+                avto = dataTable.Rows[0].ItemArray[3].ToString(),
+                LicenseNum = dataTable.Rows[0].ItemArray[04].ToString(),
+                blackList = dataTable.Rows[0].ItemArray[5].ToString() == "1" ? true : false,
+                comment = dataTable.Rows[0].ItemArray[6].ToString(),
+                dateEnter = dataTable.Rows[0].ItemArray[7].ToString(),
+                dateExit = dataTable.Rows[0].ItemArray[8].ToString(),
+                cost = dataTable.Rows[0].ItemArray[8].ToString() == "" ? "0" : dataTable.Rows[0].ItemArray[8].ToString()
             };
 
             return transit;
         }
 
-        public HistoryTransit NumberToHistory(Number number, User user, int direction)
+        /*public HistoryTransit NumberToHistory(Number number, User user, int direction)
         {
+            HistoryTransit transit;
             DataTable dataTable = GetDataTable(string.Format("SELECT id FROM Авто WHERE госНомер='{0}'", number.text));
             if (dataTable.Rows.Count < 1)
             {
@@ -306,6 +375,35 @@ LIMIT 1",
             }
 
             int avto = (int)dataTable.Rows[0].ItemArray[0];
+            bool black = (bool)dataTable.Rows[0].ItemArray[1];
+            if (black)
+            {
+                dataTable = GetDataTable(
+                string.Format(
+                    @"SELECT фио, серияНомер_ВУ, балансСчета, списокВидовАвто.авто, госНомер, черныйСписок, комментарий, въехалДата, выехалДата, стоимость
+FROM ИсторияПроездов 
+	FULL JOIN Авто ON Авто.id=ИсторияПроездов.авто
+    FULL JOIN Клиенты ON Клиенты.id=Авто.клиент
+    FULL JOIN списокВидовАвто ON списокВидовАвто.id=Авто.авто
+WHERE госНомер='{0}'
+order by въехалДата DESC
+LIMIT 1",
+                    number.text,
+                    user.parking));
+                transit = new HistoryTransit
+                {
+                    fio = dataTable.Rows[0].ItemArray[0].ToString(),
+                    serialNum = dataTable.Rows[0].ItemArray[1].ToString(),
+                    balance = dataTable.Rows[0].ItemArray[2].ToString(),
+                    avto = dataTable.Rows[0].ItemArray[3].ToString(),
+                    LicenseNum = dataTable.Rows[0].ItemArray[04].ToString(),
+                    blackList = (bool)dataTable.Rows[0].ItemArray[5],
+                    comment = dataTable.Rows[0].ItemArray[6].ToString(),
+                    added = false
+                };
+
+                return transit;
+            }
             dataTable = GetDataTable(
                 string.Format(
                     "SELECT выехалДата, id FROM ИсторияПроездов WHERE авто='{0}' and парковка='{1}' order by выехалДата DESC LIMIT 1",
@@ -316,7 +414,7 @@ LIMIT 1",
                 DateTime dateTime = DateTime.Now;
                 if (direction == 1)
                 {
-                    double price = CalcCost(avto, user, dateTime);
+                    decimal price = CalcCost(avto, user, dateTime);
                     RunCommand(
                         string.Format(
                             "UPDATE ИсторияПроездов SET выехалДата={0}, стоимость='{1}', выехалФото='@image' WHERE id='{2}'",
@@ -324,6 +422,8 @@ LIMIT 1",
                             string.Format("0:F2", price),
                             dataTable.Rows[0].ItemArray[1]),
                         number.photo.Bitmap);
+                    RunCommand(
+                        string.Format("UPDATE Парковки SET занято = Парковки.занято - 1 WHERE Парковки.id = '{0}'", user.parking));
                 }
                 else
                 {
@@ -334,6 +434,8 @@ LIMIT 1",
                             avto,
                             user.parking),
                         number.photo.Bitmap);
+                    RunCommand(
+                        string.Format("UPDATE Парковки SET занято = Парковки.занято + 1 WHERE Парковки.id = '{0}'", user.parking));
                 }
             }
 
@@ -344,27 +446,27 @@ FROM ИсторияПроездов
 	JOIN Авто ON Авто.id=ИсторияПроездов.авто
     JOIN Клиенты ON Клиенты.id=Авто.клиент
     JOIN списокВидовАвто ON списокВидовАвто.id=Авто.авто
-WHERE гос.Номер='{0}' and парковка='{1}'
+WHERE госНомер='{0}' and парковка='{1}'
 order by въехалДата DESC
 LIMIT 1",
                     number.text,
                     user.parking));
-            HistoryTransit transit = new HistoryTransit
+            transit = new HistoryTransit
             {
                 fio = dataTable.Rows[0].ItemArray[0].ToString(),
-                serialNum = dataTable.Rows[0].ItemArray[0].ToString(),
-                balance = dataTable.Rows[0].ItemArray[0].ToString(),
-                avto = dataTable.Rows[0].ItemArray[0].ToString(),
-                LicenseNum = dataTable.Rows[0].ItemArray[0].ToString(),
-                blackList = (bool)dataTable.Rows[0].ItemArray[0],
-                comment = dataTable.Rows[0].ItemArray[0].ToString(),
-                dateEnter = dataTable.Rows[0].ItemArray[0].ToString(),
-                dateExit = dataTable.Rows[0].ItemArray[0].ToString(),
-                cost = dataTable.Rows[0].ItemArray[0].ToString() == "" ? "0" : dataTable.Rows[0].ItemArray[0].ToString()
+                serialNum = dataTable.Rows[0].ItemArray[1].ToString(),
+                balance = dataTable.Rows[0].ItemArray[2].ToString(),
+                avto = dataTable.Rows[0].ItemArray[3].ToString(),
+                LicenseNum = dataTable.Rows[0].ItemArray[04].ToString(),
+                blackList = (bool)dataTable.Rows[0].ItemArray[5],
+                comment = dataTable.Rows[0].ItemArray[6].ToString(),
+                dateEnter = dataTable.Rows[0].ItemArray[7].ToString(),
+                dateExit = dataTable.Rows[0].ItemArray[8].ToString(),
+                cost = dataTable.Rows[0].ItemArray[8].ToString() == "" ? "0" : dataTable.Rows[0].ItemArray[0].ToString()
             };
 
             return transit;
-        }
+        }*/
 
         public static string HashPass(string pass)
         {
@@ -383,12 +485,12 @@ LIMIT 1",
 
             return sb.ToString();
         }
-
-        private double CalcCost(int avto, User user, DateTime dateTimeOut)
+        
+        private decimal CalcCost(int avto, User user, DateTime dateTimeOut)
         {
             int free = 0;
-            int cost = 0;
-            double price = 0;
+            decimal cost = 0;
+            decimal price = 0;
             int minits = 0;
             DataTable dataTable = GetDataTable(
                 string.Format(
@@ -400,15 +502,32 @@ LIMIT 1",
             }
 
             free = (int)dataTable.Rows[0].ItemArray[0];
-            cost = (int)dataTable.Rows[0].ItemArray[1];
+            cost = (decimal)dataTable.Rows[0].ItemArray[1];
 
             dataTable = GetDataTable(
                 string.Format(
                     "SELECT въехалДата FROM ИсторияПроездов WHERE авто='{0}' order by выехалДата DESC LIMIT 1",
                     avto));
-            DateTime dateTimeIn = DateTime.ParseExact(dataTable.Rows[0].ItemArray[0].ToString(), "yyyy-MM-dd HH:mm", null);
+            DateTime dateTimeIn;
+            try
+            {
+                dateTimeIn = DateTime.ParseExact(dataTable.Rows[0].ItemArray[0].ToString(), "dd.MM.yyyy HH:mm:ss", null);
+            }
+            catch
+            {
+                dateTimeIn = DateTime.ParseExact(dataTable.Rows[0].ItemArray[0].ToString(), "dd.MM.yyyy H:mm:ss", null);
+            }
+
             minits = Convert.ToInt32(dateTimeOut.Subtract(dateTimeIn).TotalMinutes);
-            price = (cost * minits) / 60.0;
+            if (free <= minits)
+            {
+                price = (cost * (minits - free)) / 60.00M;
+            }
+            else
+            {
+                return 0;
+            }
+
             return price;
         }
 

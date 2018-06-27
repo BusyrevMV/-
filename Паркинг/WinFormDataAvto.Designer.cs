@@ -1,6 +1,6 @@
 ﻿namespace Паркинг
 {
-    partial class WinFormAvto
+    partial class WinFormDataAvto
     {
         /// <summary>
         /// Required designer variable.
@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinFormAvto));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinFormDataAvto));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.автоDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.списокклиентовBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.parkingDataSet = new Паркинг.parkingDataSet();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.списоквидовавтоBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.автоBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.автоTableAdapter = new Паркинг.parkingDataSetTableAdapters.автоTableAdapter();
-            this.tableAdapterManager = new Паркинг.parkingDataSetTableAdapters.TableAdapterManager();
-            this.маркиавтоBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.маркиавтоTableAdapter = new Паркинг.parkingDataSetTableAdapters.маркиавтоTableAdapter();
-            this.маркиавтоDataGridView = new System.Windows.Forms.DataGridView();
             this.автоBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -54,20 +55,19 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.автоBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.автоDataGridView = new System.Windows.Forms.DataGridView();
-            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.моделиавтоDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.маркиавтоBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.моделиавтоBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigator2 = new System.Windows.Forms.BindingNavigator(this.components);
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
@@ -81,49 +81,49 @@
             this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.маркиавтоDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.моделиавтоBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.автоTableAdapter = new Паркинг.parkingDataSetTableAdapters.автоTableAdapter();
+            this.tableAdapterManager = new Паркинг.parkingDataSetTableAdapters.TableAdapterManager();
+            this.маркиавтоTableAdapter = new Паркинг.parkingDataSetTableAdapters.маркиавтоTableAdapter();
             this.моделиавтоTableAdapter = new Паркинг.parkingDataSetTableAdapters.моделиавтоTableAdapter();
-            this.моделиавтоDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.списокклиентовBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.списокклиентовTableAdapter = new Паркинг.parkingDataSetTableAdapters.списокклиентовTableAdapter();
-            this.списоквидовавтоBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.списоквидовавтоTableAdapter = new Паркинг.parkingDataSetTableAdapters.списоквидовавтоTableAdapter();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.автоDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.списокклиентовBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.parkingDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.списоквидовавтоBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.автоBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.маркиавтоBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.маркиавтоDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.автоBindingNavigator)).BeginInit();
             this.автоBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.автоDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
-            this.bindingNavigator1.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.моделиавтоDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.маркиавтоBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.моделиавтоBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator2)).BeginInit();
             this.bindingNavigator2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.моделиавтоBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.моделиавтоDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.списокклиентовBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.списоквидовавтоBindingSource)).BeginInit();
-            this.panel5.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.маркиавтоDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
+            this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -137,93 +137,100 @@
             this.panel1.Size = new System.Drawing.Size(562, 467);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
+            // автоDataGridView
             // 
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(562, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(400, 467);
-            this.panel2.TabIndex = 1;
+            this.автоDataGridView.AllowUserToAddRows = false;
+            this.автоDataGridView.AllowUserToDeleteRows = false;
+            this.автоDataGridView.AutoGenerateColumns = false;
+            this.автоDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.автоDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8});
+            this.автоDataGridView.DataSource = this.автоBindingSource;
+            this.автоDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.автоDataGridView.Location = new System.Drawing.Point(0, 58);
+            this.автоDataGridView.Name = "автоDataGridView";
+            this.автоDataGridView.Size = new System.Drawing.Size(562, 409);
+            this.автоDataGridView.TabIndex = 3;
             // 
-            // panel3
+            // dataGridViewTextBoxColumn3
             // 
-            this.panel3.AutoScroll = true;
-            this.panel3.Controls.Add(this.маркиавтоDataGridView);
-            this.panel3.Controls.Add(this.bindingNavigator1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(400, 194);
-            this.panel3.TabIndex = 1;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn3.HeaderText = "id";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Visible = false;
             // 
-            // panel4
+            // dataGridViewTextBoxColumn4
             // 
-            this.panel4.AutoScroll = true;
-            this.panel4.Controls.Add(this.моделиавтоDataGridView);
-            this.panel4.Controls.Add(this.bindingNavigator2);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 194);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(400, 273);
-            this.panel4.TabIndex = 2;
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "клиент";
+            this.dataGridViewTextBoxColumn4.DataSource = this.списокклиентовBindingSource;
+            this.dataGridViewTextBoxColumn4.DisplayMember = "клиент";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Клиент";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn4.ValueMember = "id";
+            // 
+            // списокклиентовBindingSource
+            // 
+            this.списокклиентовBindingSource.DataMember = "списокклиентов";
+            this.списокклиентовBindingSource.DataSource = this.parkingDataSet;
             // 
             // parkingDataSet
             // 
             this.parkingDataSet.DataSetName = "parkingDataSet";
             this.parkingDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "авто";
+            this.dataGridViewTextBoxColumn5.DataSource = this.списоквидовавтоBindingSource;
+            this.dataGridViewTextBoxColumn5.DisplayMember = "авто";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Авто";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn5.ValueMember = "id";
+            // 
+            // списоквидовавтоBindingSource
+            // 
+            this.списоквидовавтоBindingSource.DataMember = "списоквидовавто";
+            this.списоквидовавтоBindingSource.DataSource = this.parkingDataSet;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "госНомер";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Гос номер";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "черныйСписок";
+            this.dataGridViewTextBoxColumn7.FalseValue = "0";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Черный список";
+            this.dataGridViewTextBoxColumn7.IndeterminateValue = "0";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn7.TrueValue = "1";
+            this.dataGridViewTextBoxColumn7.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "комментарий";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Комментарий";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
             // автоBindingSource
             // 
             this.автоBindingSource.DataMember = "авто";
             this.автоBindingSource.DataSource = this.parkingDataSet;
-            // 
-            // автоTableAdapter
-            // 
-            this.автоTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.UpdateOrder = Паркинг.parkingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.автоTableAdapter = this.автоTableAdapter;
-            this.tableAdapterManager.группыTableAdapter = null;
-            this.tableAdapterManager.историяпроездовTableAdapter = null;
-            this.tableAdapterManager.историятранзакцийTableAdapter = null;
-            this.tableAdapterManager.клиентыTableAdapter = null;
-            this.tableAdapterManager.контактыклиентовTableAdapter = null;
-            this.tableAdapterManager.маркиавтоTableAdapter = this.маркиавтоTableAdapter;
-            this.tableAdapterManager.моделиавтоTableAdapter = this.моделиавтоTableAdapter;
-            this.tableAdapterManager.настройкиTableAdapter = null;
-            this.tableAdapterManager.парковкиTableAdapter = null;
-            this.tableAdapterManager.пользователиTableAdapter = null;
-            this.tableAdapterManager.тарифыTableAdapter = null;
-            // 
-            // маркиавтоBindingSource
-            // 
-            this.маркиавтоBindingSource.DataMember = "маркиавто";
-            this.маркиавтоBindingSource.DataSource = this.parkingDataSet;
-            // 
-            // маркиавтоTableAdapter
-            // 
-            this.маркиавтоTableAdapter.ClearBeforeFill = true;
-            // 
-            // маркиавтоDataGridView
-            // 
-            this.маркиавтоDataGridView.AllowUserToAddRows = false;
-            this.маркиавтоDataGridView.AllowUserToDeleteRows = false;
-            this.маркиавтоDataGridView.AutoGenerateColumns = false;
-            this.маркиавтоDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.маркиавтоDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.маркиавтоDataGridView.DataSource = this.маркиавтоBindingSource;
-            this.маркиавтоDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.маркиавтоDataGridView.Location = new System.Drawing.Point(0, 25);
-            this.маркиавтоDataGridView.Name = "маркиавтоDataGridView";
-            this.маркиавтоDataGridView.Size = new System.Drawing.Size(400, 169);
-            this.маркиавтоDataGridView.TabIndex = 0;
             // 
             // автоBindingNavigator
             // 
@@ -263,6 +270,7 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Добавить";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -347,150 +355,129 @@
             this.автоBindingNavigatorSaveItem.Name = "автоBindingNavigatorSaveItem";
             this.автоBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.автоBindingNavigatorSaveItem.Text = "Сохранить данные";
+            this.автоBindingNavigatorSaveItem.Click += new System.EventHandler(this.автоBindingNavigatorSaveItem_Click);
             // 
-            // автоDataGridView
+            // panel5
             // 
-            this.автоDataGridView.AllowUserToAddRows = false;
-            this.автоDataGridView.AllowUserToDeleteRows = false;
-            this.автоDataGridView.AutoGenerateColumns = false;
-            this.автоDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.автоDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8});
-            this.автоDataGridView.DataSource = this.автоBindingSource;
-            this.автоDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.автоDataGridView.Location = new System.Drawing.Point(0, 58);
-            this.автоDataGridView.Name = "автоDataGridView";
-            this.автоDataGridView.Size = new System.Drawing.Size(562, 409);
-            this.автоDataGridView.TabIndex = 3;
+            this.panel5.Controls.Add(this.button2);
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.textBox1);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(562, 33);
+            this.panel5.TabIndex = 2;
             // 
-            // bindingNavigator1
+            // button2
             // 
-            this.bindingNavigator1.AddNewItem = this.toolStripButton1;
-            this.bindingNavigator1.BindingSource = this.маркиавтоBindingSource;
-            this.bindingNavigator1.CountItem = this.toolStripLabel1;
-            this.bindingNavigator1.DeleteItem = this.toolStripButton2;
-            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton3,
-            this.toolStripButton4,
-            this.toolStripSeparator1,
-            this.toolStripTextBox1,
-            this.toolStripLabel1,
-            this.toolStripSeparator2,
-            this.toolStripButton5,
-            this.toolStripButton6,
-            this.toolStripSeparator3,
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton7});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
-            this.bindingNavigator1.MoveFirstItem = this.toolStripButton3;
-            this.bindingNavigator1.MoveLastItem = this.toolStripButton6;
-            this.bindingNavigator1.MoveNextItem = this.toolStripButton5;
-            this.bindingNavigator1.MovePreviousItem = this.toolStripButton4;
-            this.bindingNavigator1.Name = "bindingNavigator1";
-            this.bindingNavigator1.PositionItem = this.toolStripTextBox1;
-            this.bindingNavigator1.Size = new System.Drawing.Size(400, 25);
-            this.bindingNavigator1.TabIndex = 5;
-            this.bindingNavigator1.Text = "bindingNavigator1";
+            this.button2.Location = new System.Drawing.Point(306, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(66, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Сброс";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // toolStripButton1
+            // button1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "Добавить";
+            this.button1.Location = new System.Drawing.Point(225, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Поиск";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // toolStripLabel1
+            // label1
             // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(43, 22);
-            this.toolStripLabel1.Text = "для {0}";
-            this.toolStripLabel1.ToolTipText = "Общее число элементов";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Гос. номер";
             // 
-            // toolStripButton2
+            // textBox1
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "Удалить";
+            this.textBox1.Location = new System.Drawing.Point(77, 6);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(133, 20);
+            this.textBox1.TabIndex = 0;
             // 
-            // toolStripButton3
+            // panel2
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "Переместить в начало";
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(562, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(400, 467);
+            this.panel2.TabIndex = 1;
             // 
-            // toolStripButton4
+            // panel4
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "Переместить назад";
+            this.panel4.AutoScroll = true;
+            this.panel4.Controls.Add(this.моделиавтоDataGridView);
+            this.panel4.Controls.Add(this.bindingNavigator2);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 194);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(400, 273);
+            this.panel4.TabIndex = 2;
             // 
-            // toolStripSeparator1
+            // моделиавтоDataGridView
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.моделиавтоDataGridView.AllowUserToAddRows = false;
+            this.моделиавтоDataGridView.AllowUserToDeleteRows = false;
+            this.моделиавтоDataGridView.AutoGenerateColumns = false;
+            this.моделиавтоDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.моделиавтоDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11});
+            this.моделиавтоDataGridView.DataSource = this.моделиавтоBindingSource;
+            this.моделиавтоDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.моделиавтоDataGridView.Location = new System.Drawing.Point(0, 25);
+            this.моделиавтоDataGridView.Name = "моделиавтоDataGridView";
+            this.моделиавтоDataGridView.Size = new System.Drawing.Size(400, 248);
+            this.моделиавтоDataGridView.TabIndex = 6;
             // 
-            // toolStripTextBox1
+            // dataGridViewTextBoxColumn9
             // 
-            this.toolStripTextBox1.AccessibleName = "Положение";
-            this.toolStripTextBox1.AutoSize = false;
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(50, 23);
-            this.toolStripTextBox1.Text = "0";
-            this.toolStripTextBox1.ToolTipText = "Текущее положение";
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn9.HeaderText = "id";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.Visible = false;
             // 
-            // toolStripSeparator2
+            // dataGridViewTextBoxColumn10
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "марка";
+            this.dataGridViewTextBoxColumn10.DataSource = this.маркиавтоBindingSource;
+            this.dataGridViewTextBoxColumn10.DisplayMember = "марка";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Марка";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn10.ValueMember = "id";
             // 
-            // toolStripButton5
+            // маркиавтоBindingSource
             // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "Переместить вперед";
+            this.маркиавтоBindingSource.DataMember = "маркиавто";
+            this.маркиавтоBindingSource.DataSource = this.parkingDataSet;
             // 
-            // toolStripButton6
+            // dataGridViewTextBoxColumn11
             // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton6.Text = "Переместить в конец";
+            this.dataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "модель";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Модель";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             // 
-            // toolStripSeparator3
+            // моделиавтоBindingSource
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton7.Text = "Сохранить данные";
-            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            this.моделиавтоBindingSource.DataMember = "моделиавто";
+            this.моделиавтоBindingSource.DataSource = this.parkingDataSet;
             // 
             // bindingNavigator2
             // 
@@ -616,6 +603,33 @@
             this.toolStripButton14.Text = "Сохранить данные";
             this.toolStripButton14.Click += new System.EventHandler(this.toolStripButton14_Click);
             // 
+            // panel3
+            // 
+            this.panel3.AutoScroll = true;
+            this.panel3.Controls.Add(this.маркиавтоDataGridView);
+            this.panel3.Controls.Add(this.bindingNavigator1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(400, 194);
+            this.panel3.TabIndex = 1;
+            // 
+            // маркиавтоDataGridView
+            // 
+            this.маркиавтоDataGridView.AllowUserToAddRows = false;
+            this.маркиавтоDataGridView.AllowUserToDeleteRows = false;
+            this.маркиавтоDataGridView.AutoGenerateColumns = false;
+            this.маркиавтоDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.маркиавтоDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.маркиавтоDataGridView.DataSource = this.маркиавтоBindingSource;
+            this.маркиавтоDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.маркиавтоDataGridView.Location = new System.Drawing.Point(0, 25);
+            this.маркиавтоDataGridView.Name = "маркиавтоDataGridView";
+            this.маркиавтоDataGridView.Size = new System.Drawing.Size(400, 169);
+            this.маркиавтоDataGridView.TabIndex = 0;
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
@@ -630,177 +644,168 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Марка авто";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
-            // моделиавтоBindingSource
+            // bindingNavigator1
             // 
-            this.моделиавтоBindingSource.DataMember = "моделиавто";
-            this.моделиавтоBindingSource.DataSource = this.parkingDataSet;
+            this.bindingNavigator1.AddNewItem = this.toolStripButton1;
+            this.bindingNavigator1.BindingSource = this.маркиавтоBindingSource;
+            this.bindingNavigator1.CountItem = this.toolStripLabel1;
+            this.bindingNavigator1.DeleteItem = this.toolStripButton2;
+            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton3,
+            this.toolStripButton4,
+            this.toolStripSeparator1,
+            this.toolStripTextBox1,
+            this.toolStripLabel1,
+            this.toolStripSeparator2,
+            this.toolStripButton5,
+            this.toolStripButton6,
+            this.toolStripSeparator3,
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripButton7});
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
+            this.bindingNavigator1.MoveFirstItem = this.toolStripButton3;
+            this.bindingNavigator1.MoveLastItem = this.toolStripButton6;
+            this.bindingNavigator1.MoveNextItem = this.toolStripButton5;
+            this.bindingNavigator1.MovePreviousItem = this.toolStripButton4;
+            this.bindingNavigator1.Name = "bindingNavigator1";
+            this.bindingNavigator1.PositionItem = this.toolStripTextBox1;
+            this.bindingNavigator1.Size = new System.Drawing.Size(400, 25);
+            this.bindingNavigator1.TabIndex = 5;
+            this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "Добавить";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel1.Text = "для {0}";
+            this.toolStripLabel1.ToolTipText = "Общее число элементов";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "Удалить";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "Переместить в начало";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "Переместить назад";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.AccessibleName = "Положение";
+            this.toolStripTextBox1.AutoSize = false;
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(50, 23);
+            this.toolStripTextBox1.Text = "0";
+            this.toolStripTextBox1.ToolTipText = "Текущее положение";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Text = "Переместить вперед";
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton6.Text = "Переместить в конец";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton7.Text = "Сохранить данные";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
+            // автоTableAdapter
+            // 
+            this.автоTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.UpdateOrder = Паркинг.parkingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.автоTableAdapter = this.автоTableAdapter;
+            this.tableAdapterManager.группыTableAdapter = null;
+            this.tableAdapterManager.историяпроездовTableAdapter = null;
+            this.tableAdapterManager.историятранзакцийTableAdapter = null;
+            this.tableAdapterManager.клиентыTableAdapter = null;
+            this.tableAdapterManager.контактыклиентовTableAdapter = null;
+            this.tableAdapterManager.маркиавтоTableAdapter = this.маркиавтоTableAdapter;
+            this.tableAdapterManager.моделиавтоTableAdapter = this.моделиавтоTableAdapter;
+            this.tableAdapterManager.настройкиTableAdapter = null;
+            this.tableAdapterManager.парковкиTableAdapter = null;
+            this.tableAdapterManager.пользователиTableAdapter = null;
+            this.tableAdapterManager.тарифыTableAdapter = null;
+            // 
+            // маркиавтоTableAdapter
+            // 
+            this.маркиавтоTableAdapter.ClearBeforeFill = true;
             // 
             // моделиавтоTableAdapter
             // 
             this.моделиавтоTableAdapter.ClearBeforeFill = true;
             // 
-            // моделиавтоDataGridView
-            // 
-            this.моделиавтоDataGridView.AllowUserToAddRows = false;
-            this.моделиавтоDataGridView.AllowUserToDeleteRows = false;
-            this.моделиавтоDataGridView.AutoGenerateColumns = false;
-            this.моделиавтоDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.моделиавтоDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11});
-            this.моделиавтоDataGridView.DataSource = this.моделиавтоBindingSource;
-            this.моделиавтоDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.моделиавтоDataGridView.Location = new System.Drawing.Point(0, 25);
-            this.моделиавтоDataGridView.Name = "моделиавтоDataGridView";
-            this.моделиавтоDataGridView.Size = new System.Drawing.Size(400, 248);
-            this.моделиавтоDataGridView.TabIndex = 6;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn9.HeaderText = "id";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "марка";
-            this.dataGridViewTextBoxColumn10.DataSource = this.маркиавтоBindingSource;
-            this.dataGridViewTextBoxColumn10.DisplayMember = "марка";
-            this.dataGridViewTextBoxColumn10.HeaderText = "Марка";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn10.ValueMember = "id";
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "модель";
-            this.dataGridViewTextBoxColumn11.HeaderText = "Модель";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            // 
-            // списокклиентовBindingSource
-            // 
-            this.списокклиентовBindingSource.DataMember = "списокклиентов";
-            this.списокклиентовBindingSource.DataSource = this.parkingDataSet;
-            // 
             // списокклиентовTableAdapter
             // 
             this.списокклиентовTableAdapter.ClearBeforeFill = true;
-            // 
-            // списоквидовавтоBindingSource
-            // 
-            this.списоквидовавтоBindingSource.DataMember = "списоквидовавто";
-            this.списоквидовавтоBindingSource.DataSource = this.parkingDataSet;
             // 
             // списоквидовавтоTableAdapter
             // 
             this.списоквидовавтоTableAdapter.ClearBeforeFill = true;
             // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn3.HeaderText = "id";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "клиент";
-            this.dataGridViewTextBoxColumn4.DataSource = this.списокклиентовBindingSource;
-            this.dataGridViewTextBoxColumn4.DisplayMember = "клиент";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Клиент";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn4.ValueMember = "id";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "авто";
-            this.dataGridViewTextBoxColumn5.DataSource = this.списоквидовавтоBindingSource;
-            this.dataGridViewTextBoxColumn5.DisplayMember = "авто";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Авто";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn5.ValueMember = "id";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "госНомер";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Гос номер";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "черныйСписок";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Черный список";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn7.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "комментарий";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Комментарий";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.button2);
-            this.panel5.Controls.Add(this.button1);
-            this.panel5.Controls.Add(this.label1);
-            this.panel5.Controls.Add(this.textBox1);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(562, 33);
-            this.panel5.TabIndex = 2;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(306, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(66, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Сброс";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(225, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Поиск";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Гос. номер";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(77, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(133, 20);
-            this.textBox1.TabIndex = 0;
-            // 
-            // WinFormAvto
+            // WinFormDataAvto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -808,36 +813,36 @@
             this.ClientSize = new System.Drawing.Size(962, 467);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Name = "WinFormAvto";
+            this.Name = "WinFormDataAvto";
             this.Text = "Список автомобилей";
             this.Load += new System.EventHandler(this.WinFormAvto_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.автоDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.списокклиентовBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.parkingDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.списоквидовавтоBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.автоBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.маркиавтоBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.маркиавтоDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.автоBindingNavigator)).EndInit();
             this.автоBindingNavigator.ResumeLayout(false);
             this.автоBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.автоDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
-            this.bindingNavigator1.ResumeLayout(false);
-            this.bindingNavigator1.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.моделиавтоDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.маркиавтоBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.моделиавтоBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator2)).EndInit();
             this.bindingNavigator2.ResumeLayout(false);
             this.bindingNavigator2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.моделиавтоBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.моделиавтоDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.списокклиентовBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.списоквидовавтоBindingSource)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.маркиавтоDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
+            this.bindingNavigator1.ResumeLayout(false);
+            this.bindingNavigator1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -907,16 +912,16 @@
         private parkingDataSetTableAdapters.списокклиентовTableAdapter списокклиентовTableAdapter;
         private System.Windows.Forms.BindingSource списоквидовавтоBindingSource;
         private parkingDataSetTableAdapters.списоквидовавтоTableAdapter списоквидовавтоTableAdapter;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

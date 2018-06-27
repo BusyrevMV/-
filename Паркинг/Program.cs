@@ -16,8 +16,9 @@ namespace Паркинг
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WinFormMain(null));
+            //Application.Run(new WinFormMain(null));
             //Application.Run(new WinFormDataClients());
+            Application.Run(new WinFormAuth());
         }
     }
 }

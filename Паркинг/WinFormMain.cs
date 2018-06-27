@@ -20,6 +20,7 @@ namespace Паркинг
         private List<PictureBox> pictureList = new List<PictureBox>();
         private List<Label> labelList = new List<Label>();
         private List<Number> numList = new List<Number>();
+        private List<HistoryTransit> transitList = new List<HistoryTransit>();
         private User user;
         
         public WinFormMain(User user)
@@ -97,7 +98,7 @@ namespace Паркинг
 
         private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new WinFormSettings(camList)).Show();
+            (new WinFormSettings(camList, user)).Show();
         }
 
         private async void UpdateCam(PictureBox pictureBox, Camera camera)
@@ -122,9 +123,11 @@ namespace Паркинг
         private void NewNotyfNumber(Number number, HistoryTransit info)
         {
             numList.Add(number);
-            if (numList.Count > 30)
+            transitList.Add(info);
+            if (numList.Count > 20)
             {
                 numList.RemoveAt(0);
+                transitList.RemoveAt(0);
                 listBox1.Invoke((MethodInvoker)delegate
                 {
                     listBox1.Items.RemoveAt(0);
@@ -181,11 +184,24 @@ namespace Паркинг
         {
             timer1.Enabled = false;
             cameraControl.Close();
+            System.Threading.Thread.Sleep(1500);
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            // показать форму где надо внести доп данные
+            if (listBox1.SelectedIndex >= 0)
+            {
+                try
+                {
+                    WinFormAddTransit winFormAddTransit = new WinFormAddTransit(numList[listBox1.SelectedIndex], transitList[listBox1.SelectedIndex], camList, user);
+                    winFormAddTransit.VkNotyf += cameraControl.VkNotyf;
+                    winFormAddTransit.Show();
+                }
+                catch { }
+            }
+
+            //(new WinFormAddTransit(null, null, camList, user)).Show();
         }
 
         private void listBox1_Click(object sender, EventArgs e)
@@ -195,9 +211,22 @@ namespace Паркинг
                 try
                 {
                     pictureBoxN.Image = ((UMat)numList[listBox1.SelectedIndex].licensePlateImages).Bitmap;
+
                 }
                 catch { }
             }
+        }
+
+        private void менюToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new WinFormDataMenu(user)).Show();
+        }
+
+        private void добавитьПроездToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WinFormAddTransit winFormAddTransit = new WinFormAddTransit(null, null, camList, user);
+            winFormAddTransit.VkNotyf += cameraControl.VkNotyf;
+            winFormAddTransit.Show();
         }
     }
 }

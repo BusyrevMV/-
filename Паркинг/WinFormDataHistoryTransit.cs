@@ -40,7 +40,7 @@ namespace Паркинг
         private void button1_Click(object sender, EventArgs e)
         {
             историяпроездовBindingSource.Filter = string.Format(
-                "въехалДата between '{0}' and '{1}' or выехалДата between '{2}' and '{3}'",
+                "(въехалДата >= '{0}' and въехалДата <= '{1}') or (выехалДата >= '{2}' and выехалДата <= '{3}')",
                 dateTimePicker1.Value.ToString("yyyy-mm-dd HH:mm"),
                 dateTimePicker2.Value.ToString("yyyy-mm-dd HH:mm"),
                 dateTimePicker1.Value.ToString("yyyy-mm-dd HH:mm"),
@@ -50,6 +50,18 @@ namespace Паркинг
         private void button2_Click(object sender, EventArgs e)
         {
             историяпроездовBindingSource.Filter = "";
+        }
+
+        private void историяпроездовDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if ((e.ColumnIndex == 3 || e.ColumnIndex == 5) && историяпроездовDataGridView.CurrentRow.Cells[e.ColumnIndex].Value.ToString() != "")
+            {
+                byte [] arr = (byte[])историяпроездовDataGridView.CurrentRow.Cells[e.ColumnIndex + 1].Value;
+                System.IO.MemoryStream stream = new System.IO.MemoryStream(arr);
+                stream.Position = 0;
+                Bitmap bmp = new Bitmap(stream);
+                (new WinFormImageViewer(bmp)).Show();                
+            }
         }
     }
 }

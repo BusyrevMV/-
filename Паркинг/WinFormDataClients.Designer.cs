@@ -51,9 +51,9 @@
             this.контактыклиентовDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.контактыклиентовBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -293,6 +293,7 @@
             this.контактыклиентовDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.контактыклиентовDataGridView.Location = new System.Drawing.Point(0, 25);
             this.контактыклиентовDataGridView.Name = "контактыклиентовDataGridView";
+            this.контактыклиентовDataGridView.ReadOnly = true;
             this.контактыклиентовDataGridView.Size = new System.Drawing.Size(420, 578);
             this.контактыклиентовDataGridView.TabIndex = 0;
             // 
@@ -301,6 +302,7 @@
             this.dataGridViewTextBoxColumn5.DataPropertyName = "id";
             this.dataGridViewTextBoxColumn5.HeaderText = "id";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Visible = false;
             // 
             // dataGridViewTextBoxColumn6
@@ -308,13 +310,21 @@
             this.dataGridViewTextBoxColumn6.DataPropertyName = "клиент";
             this.dataGridViewTextBoxColumn6.HeaderText = "клиент";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Visible = false;
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "типКонтакта";
             this.dataGridViewTextBoxColumn7.HeaderText = "Тип контакта";
+            this.dataGridViewTextBoxColumn7.Items.AddRange(new object[] {
+            "ВКонтакте",
+            "Телефон",
+            "E-mail"});
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -322,12 +332,19 @@
             this.dataGridViewTextBoxColumn8.DataPropertyName = "контакт";
             this.dataGridViewTextBoxColumn8.HeaderText = "Контакт";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "уведомления";
+            this.dataGridViewTextBoxColumn9.FalseValue = "0";
             this.dataGridViewTextBoxColumn9.HeaderText = "Уведомление";
+            this.dataGridViewTextBoxColumn9.IndeterminateValue = "0";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn9.TrueValue = "1";
             // 
             // контактыклиентовBindingSource
             // 
@@ -384,6 +401,7 @@
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Enabled = false;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.RightToLeftAutoMirrorImage = true;
@@ -485,6 +503,7 @@
             this.клиентыDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.клиентыDataGridView.Location = new System.Drawing.Point(0, 25);
             this.клиентыDataGridView.Name = "клиентыDataGridView";
+            this.клиентыDataGridView.ReadOnly = true;
             this.клиентыDataGridView.Size = new System.Drawing.Size(864, 578);
             this.клиентыDataGridView.TabIndex = 0;
             this.клиентыDataGridView.SelectionChanged += new System.EventHandler(this.клиентыDataGridView_SelectionChanged);
@@ -494,6 +513,7 @@
             this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
             this.idDataGridViewTextBoxColumn.HeaderText = "id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Visible = false;
             // 
             // фиоDataGridViewTextBoxColumn
@@ -502,12 +522,14 @@
             this.фиоDataGridViewTextBoxColumn.DataPropertyName = "фио";
             this.фиоDataGridViewTextBoxColumn.HeaderText = "ФИО";
             this.фиоDataGridViewTextBoxColumn.Name = "фиоDataGridViewTextBoxColumn";
+            this.фиоDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // серияНомерВУDataGridViewTextBoxColumn
             // 
             this.серияНомерВУDataGridViewTextBoxColumn.DataPropertyName = "серияНомер_ВУ";
             this.серияНомерВУDataGridViewTextBoxColumn.HeaderText = "Серия/Номер ВУ";
             this.серияНомерВУDataGridViewTextBoxColumn.Name = "серияНомерВУDataGridViewTextBoxColumn";
+            this.серияНомерВУDataGridViewTextBoxColumn.ReadOnly = true;
             this.серияНомерВУDataGridViewTextBoxColumn.Width = 120;
             // 
             // балансСчетаDataGridViewTextBoxColumn
@@ -515,6 +537,7 @@
             this.балансСчетаDataGridViewTextBoxColumn.DataPropertyName = "балансСчета";
             this.балансСчетаDataGridViewTextBoxColumn.HeaderText = "Баланс счета";
             this.балансСчетаDataGridViewTextBoxColumn.Name = "балансСчетаDataGridViewTextBoxColumn";
+            this.балансСчетаDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // адресDataGridViewTextBoxColumn
             // 
@@ -522,6 +545,7 @@
             this.адресDataGridViewTextBoxColumn.DataPropertyName = "адрес";
             this.адресDataGridViewTextBoxColumn.HeaderText = "Адрес";
             this.адресDataGridViewTextBoxColumn.Name = "адресDataGridViewTextBoxColumn";
+            this.адресDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // клиентыBindingSource
             // 
@@ -566,6 +590,7 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Добавить";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -577,6 +602,7 @@
             // bindingNavigatorDeleteItem
             // 
             this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Enabled = false;
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
@@ -747,11 +773,6 @@
         private parkingDataSetTableAdapters.контактыклиентовTableAdapter контактыклиентовTableAdapter;
         private System.Windows.Forms.BindingSource контактыклиентовBindingSource;
         private System.Windows.Forms.DataGridView контактыклиентовDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
@@ -782,6 +803,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn фиоDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn серияНомерВУDataGridViewTextBoxColumn;

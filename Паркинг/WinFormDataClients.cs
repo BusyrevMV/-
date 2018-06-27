@@ -13,11 +13,19 @@ namespace Паркинг
 {
     public partial class WinFormDataClients : Form
     {
-        public WinFormDataClients()
+        public WinFormDataClients(User user)
         {
             InitializeComponent();
             клиентыDataGridView.DataError += new DataGridViewDataErrorEventHandler(DataGridView_DataError);
             контактыклиентовDataGridView.DataError += new DataGridViewDataErrorEventHandler(DataGridView_DataError);
+            DataBaseCenter dataBase = DataBaseCenter.Create();
+            if (dataBase.CheckRigth(user, Rights.редКлиенты))
+            {
+                клиентыDataGridView.ReadOnly = false;
+                bindingNavigatorDeleteItem.Enabled = true;
+                toolStripButton2.Enabled = true;
+                контактыклиентовDataGridView.ReadOnly = false;
+            }
         }
 
         private void DataGridView_DataError(object sender, DataGridViewDataErrorEventArgs anError)
@@ -31,7 +39,7 @@ namespace Паркинг
             this.Validate();
             this.клиентыBindingSource.EndEdit();
             this.tableAdapterManager.клиентыTableAdapter.Update(this.parkingDataSet.клиенты);
-
+            this.клиентыTableAdapter.Fill(this.parkingDataSet.клиенты);
         }
 
         private void WinFormDataClients_Load(object sender, EventArgs e)
@@ -50,7 +58,7 @@ namespace Паркинг
         }        
 
         private void toolStripButton7_Click(object sender, EventArgs e)
-        {
+        {           
             this.Validate();
             this.контактыклиентовBindingSource.EndEdit();
             this.tableAdapterManager.контактыклиентовTableAdapter.Update(this.parkingDataSet.контактыклиентов);
@@ -69,7 +77,8 @@ namespace Паркинг
             {
                 if (indx >= 0)
                 {
-                    контактыклиентовDataGridView.CurrentRow.Cells[0].Value = indx;
+                    контактыклиентовDataGridView.CurrentRow.Cells[1].Value = indx;
+                    контактыклиентовDataGridView.CurrentRow.Cells[4].Value = 0;
                     return;
                 }
             }
@@ -86,6 +95,11 @@ namespace Паркинг
         private void button2_Click(object sender, EventArgs e)
         {
             клиентыBindingSource.Filter = "";
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            клиентыDataGridView.CurrentRow.Cells[3].Value = 0;
         }
     }
 }

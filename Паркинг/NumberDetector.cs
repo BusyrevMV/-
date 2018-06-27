@@ -13,7 +13,7 @@ namespace Паркинг
     {
         private Camera camera;
         private NumberSearch numberSearch = new NumberSearch();
-        private NumberRecognition numberRecognition = new NumberRecognition();
+        private NumberRecognition numberRecognition = NumberRecognition.Create();
         private bool isRun = true;
         private Thread thread;
 
@@ -166,7 +166,7 @@ namespace Паркинг
                     if (lastNumber != number.text)
                     {                        
                         lastNumber = number.text;
-                        if (camera.direction != 0)
+                        if (camera.direction != 0 && number.direction != 0)
                         {
                             number.direction = number.direction / Math.Abs(number.direction) * camera.direction;
                         }

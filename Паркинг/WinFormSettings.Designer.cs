@@ -70,6 +70,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -434,6 +436,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.textBox12);
+            this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.button5);
             this.tabPage2.Controls.Add(this.textBox11);
             this.tabPage2.Controls.Add(this.textBox10);
@@ -451,7 +455,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(117, 149);
+            this.button5.Location = new System.Drawing.Point(115, 167);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 6;
@@ -461,31 +465,31 @@
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(81, 98);
+            this.textBox11.Location = new System.Drawing.Point(93, 126);
             this.textBox11.Name = "textBox11";
             this.textBox11.PasswordChar = '*';
-            this.textBox11.Size = new System.Drawing.Size(135, 20);
+            this.textBox11.Size = new System.Drawing.Size(147, 20);
             this.textBox11.TabIndex = 5;
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(69, 54);
+            this.textBox10.Location = new System.Drawing.Point(246, 13);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(147, 20);
             this.textBox10.TabIndex = 4;
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(246, 15);
+            this.textBox9.Location = new System.Drawing.Point(93, 84);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 20);
+            this.textBox9.Size = new System.Drawing.Size(147, 20);
             this.textBox9.TabIndex = 3;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(8, 96);
+            this.label11.Location = new System.Drawing.Point(8, 124);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(67, 20);
             this.label11.TabIndex = 2;
@@ -495,7 +499,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(8, 54);
+            this.label10.Location = new System.Drawing.Point(8, 82);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(55, 20);
             this.label10.TabIndex = 1;
@@ -510,6 +514,23 @@
             this.label9.Size = new System.Drawing.Size(232, 20);
             this.label9.TabIndex = 0;
             this.label9.Text = "Идентификатор приложения";
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(133, 49);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(260, 20);
+            this.textBox12.TabIndex = 8;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(8, 49);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(119, 20);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Токен доступа";
             // 
             // WinFormSettings
             // 
@@ -581,5 +602,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.Label label12;
     }
 }

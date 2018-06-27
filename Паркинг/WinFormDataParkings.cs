@@ -12,10 +12,18 @@ namespace Паркинг
 {
     public partial class WinFormDataParkings : Form
     {
-        public WinFormDataParkings()
+        public WinFormDataParkings(User user)
         {
             InitializeComponent();
             парковкиDataGridView.DataError += new DataGridViewDataErrorEventHandler(DataGridView_DataError);
+            DataBaseCenter dataBase = DataBaseCenter.Create();
+            if (dataBase.CheckRigth(user, Rights.редПольз))
+            {
+                парковкиDataGridView.ReadOnly = false;
+                bindingNavigatorAddNewItem.Enabled = true;
+                bindingNavigatorDeleteItem.Enabled = true;
+                парковкиBindingNavigatorSaveItem.Enabled = true;
+            }
         }
 
         private void DataGridView_DataError(object sender, DataGridViewDataErrorEventArgs anError)

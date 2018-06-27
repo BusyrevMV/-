@@ -30,6 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBoxN = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -37,16 +41,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьПроездToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBoxN = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxN)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxN)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -63,6 +65,43 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(421, 629);
             this.panel1.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 392);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(239, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Дополнительная информация и уведомления";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(159, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Лог проехавших автомобилей";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 298);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(196, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Гос. номер проехавшего автомобиля";
+            // 
+            // pictureBoxN
+            // 
+            this.pictureBoxN.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pictureBoxN.Location = new System.Drawing.Point(3, 314);
+            this.pictureBoxN.Name = "pictureBoxN";
+            this.pictureBoxN.Size = new System.Drawing.Size(416, 73);
+            this.pictureBoxN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxN.TabIndex = 1;
+            this.pictureBoxN.TabStop = false;
             // 
             // richTextBox1
             // 
@@ -118,7 +157,9 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.настройкиToolStripMenuItem});
+            this.настройкиToolStripMenuItem,
+            this.менюToolStripMenuItem,
+            this.добавитьПроездToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1155, 24);
@@ -132,46 +173,23 @@
             this.настройкиToolStripMenuItem.Text = "Настройки";
             this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
             // 
+            // менюToolStripMenuItem
+            // 
+            this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(139, 20);
+            this.менюToolStripMenuItem.Text = "Управление данными";
+            this.менюToolStripMenuItem.Click += new System.EventHandler(this.менюToolStripMenuItem_Click);
+            // 
+            // добавитьПроездToolStripMenuItem
+            // 
+            this.добавитьПроездToolStripMenuItem.Name = "добавитьПроездToolStripMenuItem";
+            this.добавитьПроездToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.добавитьПроездToolStripMenuItem.Text = "Добавить проезд";
+            this.добавитьПроездToolStripMenuItem.Click += new System.EventHandler(this.добавитьПроездToolStripMenuItem_Click);
+            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // pictureBoxN
-            // 
-            this.pictureBoxN.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBoxN.Location = new System.Drawing.Point(3, 314);
-            this.pictureBoxN.Name = "pictureBoxN";
-            this.pictureBoxN.Size = new System.Drawing.Size(416, 73);
-            this.pictureBoxN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxN.TabIndex = 1;
-            this.pictureBoxN.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 298);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(196, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Гос. номер проехавшего автомобиля";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Лог проехавших автомобилей";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 392);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(239, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Дополнительная информация и уведомления";
             // 
             // WinFormMain
             // 
@@ -188,11 +206,11 @@
             this.Load += new System.EventHandler(this.WinFormMain_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxN)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxN)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,5 +231,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem добавитьПроездToolStripMenuItem;
     }
 }

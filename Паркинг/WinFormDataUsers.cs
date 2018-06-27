@@ -12,10 +12,18 @@ namespace Паркинг
 {
     public partial class WinFormDataUsers : Form
     {
-        public WinFormDataUsers()
+        public WinFormDataUsers(User user)
         {
             InitializeComponent();
             пользователиDataGridView.DataError += new DataGridViewDataErrorEventHandler(DataGridView_DataError);
+            DataBaseCenter dataBase = DataBaseCenter.Create();
+            if (dataBase.CheckRigth(user, Rights.редПольз))
+            {
+                пользователиDataGridView.ReadOnly = false;
+                bindingNavigatorAddNewItem.Enabled = true;
+                bindingNavigatorDeleteItem.Enabled = true;
+                пользователиBindingNavigatorSaveItem.Enabled = true;
+            }
         }
 
         private void DataGridView_DataError(object sender, DataGridViewDataErrorEventArgs anError)
@@ -53,11 +61,25 @@ namespace Паркинг
 
         private void пользователиDataGridView_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3)
-            {
-                пользователиDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value =
-                    DataBaseCenter.HashPass(пользователиDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-            }
+            
+        }
+
+        private void пользователиDataGridView_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void сброситьПарольToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string alhp = "qwertyuiopasdfghjklzxcvbnm";
+            Random random = new Random();
+            string pass = alhp[random.Next(25)].ToString() +
+                alhp[random.Next(25)].ToString() +
+                alhp[random.Next(25)].ToString() +
+                alhp[random.Next(25)].ToString() +
+                alhp[random.Next(25)].ToString();
+            пользователиDataGridView.CurrentRow.Cells[3].Value = DataBaseCenter.HashPass(pass);
+            MessageBox.Show("Новый пароль " + pass, "Оповещение");
         }
     }
 }

@@ -18,11 +18,13 @@ namespace Паркинг
         private List<Camera> activCams = new List<Camera>();
         private Camera camera;
         private Bitmap bitmap = new Bitmap(300, 300);
+        private User user;
 
-        public WinFormSettings(List<Camera> cams)
+        public WinFormSettings(List<Camera> cams, User user)
         {
             InitializeComponent();
             activCams = cams;
+            this.user = user;            
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -53,6 +55,24 @@ namespace Паркинг
             {
                 listBox1.SelectedIndex = 0;
                 listBox2.SelectedIndex = 0;
+            }
+
+            DataBaseCenter dataBase = DataBaseCenter.Create();
+            if (!dataBase.CheckRigth(user, Rights.настройки))
+            {
+                button5.Enabled = false;
+                return;
+            }
+
+            DataTable dataTable = dataBase.GetDataTable("SELECT значение FROM Настройки WHERE название='vk'");
+            if (dataTable.Rows.Count != 0)
+            {
+                string[] str = dataTable.Rows[0].ItemArray[0].ToString().Split("|".ToCharArray());
+                Array.Resize(ref str, 4);
+                textBox10.Text = str[0];
+                textBox9.Text = str[1];
+                textBox11.Text = str[2];
+                textBox12.Text = str[3];
             }
         }
 
@@ -270,7 +290,7 @@ namespace Паркинг
         private void button5_Click(object sender, EventArgs e)
         {
             ulong id;
-            if (ulong.TryParse(textBox9.Text, out id))
+            if (!ulong.TryParse(textBox10.Text, out id))
             {
                 MessageBox.Show("Некорректный индентификатор приложения!", "Ошибка!");
                 return;
@@ -278,9 +298,10 @@ namespace Паркинг
 
             DataBaseCenter dataBase = DataBaseCenter.Create();
             dataBase.RunCommand("UPDATE Настройки SET значение='" + 
-                textBox9.Text + " | " + 
-                textBox10.Text + " | " + 
-                textBox11.Text + "' WHERE название='vk'");                        
+                textBox10.Text + "|" + 
+                textBox9.Text + "|" + 
+                textBox11.Text + "|" +
+                textBox12.Text + "' WHERE название='vk'");                        
         }
     }
 }

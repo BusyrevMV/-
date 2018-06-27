@@ -114,7 +114,7 @@ namespace Паркинг
         public async void StartAsync(ulong? lastTs = null, ulong? lastPts = null)
         {
             if (Active)
-                throw new NotImplementedException("Messages for {0} already watching");
+                throw new NotImplementedException("Messages already watching");
 
             Active = true;
             await GetLongPoolServerAsync(lastPts);

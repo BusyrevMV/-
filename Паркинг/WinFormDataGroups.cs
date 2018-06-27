@@ -36,7 +36,21 @@ namespace Паркинг
         {
             // TODO: данная строка кода позволяет загрузить данные в таблицу "parkingDataSet.группы". При необходимости она может быть перемещена или удалена.
             this.группыTableAdapter.Fill(this.parkingDataSet.группы);
+        }
 
+        private void группыDataGridView_Click(object sender, EventArgs e)
+        {
+            /*if (группыDataGridView.CurrentCell.ColumnIndex > 1)
+                группыDataGridView.CurrentCell.Value =
+                        группыDataGridView.CurrentCell.Value.ToString() == "1" ? 0 : 1;*/
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            for(int i = 2; i < группыDataGridView.CurrentRow.Cells.Count; i++)
+            {
+                группыDataGridView.CurrentRow.Cells[i].Value = 0;
+            }
         }
     }
 }

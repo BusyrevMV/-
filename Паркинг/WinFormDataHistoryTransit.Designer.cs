@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinFormDataHistoryTransit));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,35 +41,20 @@
             this.tableAdapterManager = new Паркинг.parkingDataSetTableAdapters.TableAdapterManager();
             this.автоTableAdapter = new Паркинг.parkingDataSetTableAdapters.автоTableAdapter();
             this.парковкиTableAdapter = new Паркинг.parkingDataSetTableAdapters.парковкиTableAdapter();
-            this.историяпроездовBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.историяпроездовBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.историяпроездовDataGridView = new System.Windows.Forms.DataGridView();
+            this.парковкиBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.автоBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.парковкиBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.автоBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.parkingDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.историяпроездовBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.историяпроездовBindingNavigator)).BeginInit();
-            this.историяпроездовBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.историяпроездовDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.парковкиBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.автоBindingSource)).BeginInit();
@@ -176,133 +160,6 @@
             // 
             this.парковкиTableAdapter.ClearBeforeFill = true;
             // 
-            // историяпроездовBindingNavigator
-            // 
-            this.историяпроездовBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.историяпроездовBindingNavigator.BindingSource = this.историяпроездовBindingSource;
-            this.историяпроездовBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.историяпроездовBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.историяпроездовBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.историяпроездовBindingNavigatorSaveItem});
-            this.историяпроездовBindingNavigator.Location = new System.Drawing.Point(0, 40);
-            this.историяпроездовBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.историяпроездовBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.историяпроездовBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.историяпроездовBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.историяпроездовBindingNavigator.Name = "историяпроездовBindingNavigator";
-            this.историяпроездовBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.историяпроездовBindingNavigator.Size = new System.Drawing.Size(864, 25);
-            this.историяпроездовBindingNavigator.TabIndex = 1;
-            this.историяпроездовBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Enabled = false;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Добавить";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(43, 22);
-            this.bindingNavigatorCountItem.Text = "для {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Общее число элементов";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Enabled = false;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Удалить";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Переместить в начало";
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Переместить назад";
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Положение";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Текущее положение";
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Переместить вперед";
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Переместить в конец";
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // историяпроездовBindingNavigatorSaveItem
-            // 
-            this.историяпроездовBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.историяпроездовBindingNavigatorSaveItem.Enabled = false;
-            this.историяпроездовBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("историяпроездовBindingNavigatorSaveItem.Image")));
-            this.историяпроездовBindingNavigatorSaveItem.Name = "историяпроездовBindingNavigatorSaveItem";
-            this.историяпроездовBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.историяпроездовBindingNavigatorSaveItem.Text = "Сохранить данные";
-            this.историяпроездовBindingNavigatorSaveItem.Click += new System.EventHandler(this.историяпроездовBindingNavigatorSaveItem_Click);
-            // 
             // историяпроездовDataGridView
             // 
             this.историяпроездовDataGridView.AllowUserToAddRows = false;
@@ -320,11 +177,22 @@
             this.dataGridViewTextBoxColumn6});
             this.историяпроездовDataGridView.DataSource = this.историяпроездовBindingSource;
             this.историяпроездовDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.историяпроездовDataGridView.Location = new System.Drawing.Point(0, 65);
+            this.историяпроездовDataGridView.Location = new System.Drawing.Point(0, 40);
             this.историяпроездовDataGridView.Name = "историяпроездовDataGridView";
             this.историяпроездовDataGridView.ReadOnly = true;
-            this.историяпроездовDataGridView.Size = new System.Drawing.Size(864, 385);
+            this.историяпроездовDataGridView.Size = new System.Drawing.Size(864, 410);
             this.историяпроездовDataGridView.TabIndex = 2;
+            this.историяпроездовDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.историяпроездовDataGridView_CellDoubleClick);
+            // 
+            // парковкиBindingSource
+            // 
+            this.парковкиBindingSource.DataMember = "парковки";
+            this.парковкиBindingSource.DataSource = this.parkingDataSet;
+            // 
+            // автоBindingSource
+            // 
+            this.автоBindingSource.DataMember = "авто";
+            this.автоBindingSource.DataSource = this.parkingDataSet;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -347,11 +215,6 @@
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn2.ValueMember = "id";
             // 
-            // парковкиBindingSource
-            // 
-            this.парковкиBindingSource.DataMember = "парковки";
-            this.парковкиBindingSource.DataSource = this.parkingDataSet;
-            // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "авто";
@@ -363,11 +226,6 @@
             this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn3.ValueMember = "id";
-            // 
-            // автоBindingSource
-            // 
-            this.автоBindingSource.DataMember = "авто";
-            this.автоBindingSource.DataSource = this.parkingDataSet;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -383,6 +241,9 @@
             this.dataGridViewImageColumn1.HeaderText = "Фото въезда";
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.Text = "Фото";
+            this.dataGridViewImageColumn1.Visible = false;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -398,6 +259,9 @@
             this.dataGridViewImageColumn2.HeaderText = "Фото выезда";
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.ReadOnly = true;
+            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewImageColumn2.Visible = false;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -412,7 +276,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 450);
             this.Controls.Add(this.историяпроездовDataGridView);
-            this.Controls.Add(this.историяпроездовBindingNavigator);
             this.Controls.Add(this.panel1);
             this.Name = "WinFormDataHistoryTransit";
             this.Text = "История парковки";
@@ -421,14 +284,10 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.parkingDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.историяпроездовBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.историяпроездовBindingNavigator)).EndInit();
-            this.историяпроездовBindingNavigator.ResumeLayout(false);
-            this.историяпроездовBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.историяпроездовDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.парковкиBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.автоBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -439,19 +298,6 @@
         private System.Windows.Forms.BindingSource историяпроездовBindingSource;
         private parkingDataSetTableAdapters.историяпроездовTableAdapter историяпроездовTableAdapter;
         private parkingDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.BindingNavigator историяпроездовBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton историяпроездовBindingNavigatorSaveItem;
         private parkingDataSetTableAdapters.автоTableAdapter автоTableAdapter;
         private System.Windows.Forms.DataGridView историяпроездовDataGridView;
         private System.Windows.Forms.BindingSource автоBindingSource;
@@ -466,9 +312,9 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewImageColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }

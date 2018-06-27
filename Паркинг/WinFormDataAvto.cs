@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Паркинг
 {
-    public partial class WinFormAvto : Form
+    public partial class WinFormDataAvto : Form
     {
-        public WinFormAvto()
+        public WinFormDataAvto()
         {
             InitializeComponent();
             автоDataGridView.DataError += new DataGridViewDataErrorEventHandler(DataGridView_DataError);
@@ -62,7 +62,8 @@ namespace Паркинг
         {
             this.Validate();
             this.автоBindingSource.EndEdit();
-            this.tableAdapterManager.моделиавтоTableAdapter.Update(this.parkingDataSet.моделиавто);
+            try { this.tableAdapterManager.моделиавтоTableAdapter.Update(this.parkingDataSet.моделиавто); }
+            catch { MessageBox.Show("Перезапустите окно!", "Ошибка"); }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -73,6 +74,11 @@ namespace Паркинг
         private void button2_Click(object sender, EventArgs e)
         {
             автоBindingSource.Filter = "";
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            автоDataGridView.CurrentRow.Cells[4].Value = 0;
         }
     }
 }

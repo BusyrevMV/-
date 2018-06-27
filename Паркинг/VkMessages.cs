@@ -21,7 +21,7 @@ namespace Паркинг
 
         private ReadOnlyCollection<Photo> ImageToVK(Image img)
         {
-            var uploadServer = vkAcc.Photo.GetMessagesUploadServer(486948783);
+            var uploadServer = vkAcc.Photo.GetMessagesUploadServer(vkAcc.UserId.Value);
             MemoryStream stream = new MemoryStream();
             img.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
             stream.Position = 0;
@@ -35,17 +35,14 @@ namespace Паркинг
 
         private async Task<string> UploadImage(string url, byte[] data)
         {
-            using (var client = new HttpClient())
-            {
-                var requestContent = new MultipartFormDataContent();
-                var imageContent = new ByteArrayContent(data);
-                imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
-                requestContent.Add(imageContent, "photo", "image.jpg");
+            HttpClient client = new HttpClient();
+            var requestContent = new MultipartFormDataContent();
+            var imageContent = new ByteArrayContent(data);
+            imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+            requestContent.Add(imageContent, "photo", "image.jpg");
+            var response = await client.PostAsync(url, requestContent);
+            return await response.Content.ReadAsStringAsync();
 
-                var response = await client.PostAsync(url, requestContent);
-
-                return await response.Content.ReadAsStringAsync();
-            }
         }
 
         private ReadOnlyCollection<Document> DocsToVK(string path)
@@ -82,7 +79,17 @@ namespace Паркинг
 
         public void SendMsg(long id, string msg, Image img)
         {
-            ReadOnlyCollection<Photo> photo = ImageToVK(img);
+            ReadOnlyCollection<Photo> photo;
+            try
+            {
+                photo = ImageToVK(img);
+            }
+            catch
+            {
+                SendMsg(id, msg);
+                return;
+            }
+
             vkAcc.Messages.SendAsync(new MessagesSendParams
             {
                 UserId = id,

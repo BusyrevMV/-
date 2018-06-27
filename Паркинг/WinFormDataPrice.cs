@@ -12,17 +12,24 @@ namespace Паркинг
 {
     public partial class WinFormDataPrice : Form
     {
-        public WinFormDataPrice()
+        public WinFormDataPrice(User user)
         {
             InitializeComponent();
+            тарифыDataGridView.DataError += new DataGridViewDataErrorEventHandler(DataGridView_DataError);
+            DataBaseCenter dataBase = DataBaseCenter.Create();
+            if (dataBase.CheckRigth(user, Rights.редПольз))
+            {
+                тарифыDataGridView.ReadOnly = false;
+                bindingNavigatorAddNewItem.Enabled = true;
+                bindingNavigatorDeleteItem.Enabled = true;
+                тарифыBindingNavigatorSaveItem.Enabled = true;
+            }
         }
 
-        private void настройкиBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        private void DataGridView_DataError(object sender, DataGridViewDataErrorEventArgs anError)
         {
-            this.Validate();
-            this.настройкиBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.parkingDataSet);
-
+            MessageBox.Show("Вы ввели неверный формат данных в поле!", "Ошибка");
+            anError.ThrowException = false;
         }
 
         private void тарифыBindingNavigatorSaveItem_Click(object sender, EventArgs e)

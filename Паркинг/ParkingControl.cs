@@ -52,15 +52,24 @@ namespace Паркинг
             {
                 result += 8;
             }
-
-            for (int i = 0; i < cameras.Count; i++)
+            else
             {
-                cameras[i].Reconnect();
-                numberDetectors.Add(new NumberDetector(cameras[i]));
-                numberDetectors.Last().NewNumberDetect += NewNumberDetected;
-                numberDetectors.Last().NewNumbersDetect += NewNumbersDetected;
-                numberDetectors.Last().Start(); // добавить также обработчики
+                DataBaseCenter dataBase = DataBaseCenter.Create();
+                if (dataBase.CheckRigth(user, Rights.чатБот))
+                    vkControl.vkBot.BotStart();
             }
+
+            Task.Run(() => 
+            { 
+                for (int i = 0; i < cameras.Count; i++)
+                {
+                    cameras[i].Reconnect();
+                    numberDetectors.Add(new NumberDetector(cameras[i]));
+                    numberDetectors.Last().NewNumberDetect += NewNumberDetected;
+                    //numberDetectors.Last().NewNumbersDetect += NewNumbersDetected;
+                    numberDetectors.Last().Start(); // добавить также обработчики
+                }
+            });
 
             return result;
         }
@@ -162,7 +171,7 @@ namespace Паркинг
             }
         }
 
-        public async Task<HistoryTransit> AddTransit(string num, int direction, int camera)
+        /*public async Task<HistoryTransit> AddTransit(string num, int direction, int camera)
         {
             Number number = new Number();
             number.text = num;
@@ -177,11 +186,12 @@ namespace Паркинг
             }
 
             return null;
-        }
+        }*/
 
-        private void VkNotyf(Number number, HistoryTransit historyTransit)
+        public void VkNotyf(Number number, HistoryTransit historyTransit)
         {
-            NewNotyfNumber(number, historyTransit);
+            if (vkControl.vkMessages == null)
+                return;
             List<int> contacts = dataBase.GetContacts(number.text);
             foreach (int id in contacts)
             {

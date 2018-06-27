@@ -17,22 +17,25 @@ namespace Паркинг
             DataTable dataTable = dataBase.GetDataTable(string.Format(
                 @"Select ИсторияТранзакций.операция, 
 ИсторияТранзакций.сумма, ИсторияТранзакций.дата, 
-concat(въехалДата, ' - ', выехалДата, ' ',госНомер)   
+concat(въехалДата, ' - ', выехалДата, ' - авто: ',госНомер)   
 From ИсторияТранзакций 
-	JOIN Клиенты ON Клиенты.id=ИсторияТранзакций.клиент
+	JOIN Клиенты ON Клиенты.id=ИсторияТранзакций.клиент 
     JOIN КонтактыКлиентов ON КонтактыКлиентов.клиент=Клиенты.id    
-    LEFT JOIN ИсторияПроездов ON ИсторияПроездов.id=ИсторияТранзакций.стоянка
-    JOIN Авто ON Авто.id=ИсторияПроездов.авто
-WHERE
+    LEFT JOIN ИсторияПроездов ON ИсторияПроездов.id=ИсторияТранзакций.стоянка 
+    LEFT JOIN Авто ON Авто.id=ИсторияПроездов.авто 
+WHERE 
 	КонтактыКлиентов.контакт='{0}' and ИсторияТранзакций.дата between '{1}' and '{2}' 
 ORDER BY ИсторияТранзакций.дата DESC", idvk, leftDate, rightDate));
             DataRow[] data_arr = dataTable.Select();
-            dataTable = dataBase.GetDataTable(@"Select ФИО, серияНомер_ВУ
+            dataTable = dataBase.GetDataTable(string.Format(@"Select ФИО, серияНомер_ВУ
 From Клиенты
     JOIN КонтактыКлиентов ON КонтактыКлиентов.клиент=Клиенты.id    
 WHERE
 	КонтактыКлиентов.контакт='{0}'
-LIMIT 1");
+LIMIT 1", idvk));
+            if (dataTable.Rows.Count == 0)
+                throw new Exception();
+
             string path = string.Format("report {0} {1}.docx", idvk, DateTime.Now.ToString("yyyy-MM-dd HH-mm"));
             DocX document = DocX.Create(path);
             document.InsertParagraph(string.Format("История операций по счету за период '{0}' - '{1}'", leftDate, rightDate)).Font(new FontFamily("Times New Roman")).FontSize(16).Bold().Alignment = Alignment.center;
@@ -85,12 +88,15 @@ WHERE
 	КонтактыКлиентов.контакт='{0}' and (ИсторияПроездов.въехалДата between '{1}' and '{2}' or ИсторияПроездов.выехалДата between '{1}' and '{2}')
 ORDER BY ИсторияПроездов.въехалДата DESC", idvk, leftDate, rightDate));
             DataRow[] data_arr = dataTable.Select();
-            dataTable = dataBase.GetDataTable(@"Select ФИО, серияНомер_ВУ
+            dataTable = dataBase.GetDataTable(string.Format(@"Select ФИО, серияНомер_ВУ
 From Клиенты
     JOIN КонтактыКлиентов ON КонтактыКлиентов.клиент=Клиенты.id    
 WHERE
 	КонтактыКлиентов.контакт='{0}'
-LIMIT 1");
+LIMIT 1", idvk)); 
+            if (dataTable.Rows.Count == 0)           
+                throw new Exception(); 
+            
             string path = string.Format("report {0} {1}.docx", idvk, DateTime.Now.ToString("yyyy-MM-dd HH-mm"));
             DocX document = DocX.Create(path);
             document.InsertParagraph(string.Format("История парковки за период '{0}' - '{1}'", leftDate, rightDate)).Font(new FontFamily("Times New Roman")).FontSize(16).Bold().Alignment = Alignment.center;

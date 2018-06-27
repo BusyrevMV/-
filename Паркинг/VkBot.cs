@@ -23,17 +23,25 @@ namespace Паркинг
             {
                 if (msg.FromId != vkAcc.UserId)
                 {
-                    string[] cmd = msg.Body.Split(Convert.ToChar(" "));
+                    string[] cmd = msg.Body.ToLower().Split(Convert.ToChar(" "));
                     switch (cmd[0])
                     {
                         case "инфо":
                             {
                                 DataBaseCenter dataBase = DataBaseCenter.Create();
-                                string str = dataBase.StatusAvto(msg.FromId.Value);
-                                vkMessages.SendMsg(msg.FromId.Value, str);
+                                try
+                                {
+                                    string str = dataBase.StatusAvto(msg.FromId.Value);
+                                    vkMessages.SendMsg(msg.FromId.Value, str);
+                                }
+                                catch
+                                {
+                                    vkMessages.SendMsg(msg.FromId.Value, "Необходимо зарегистрировать ваш ID в системе, обратитесь к оператору!");
+                                }
+                                
                                 break;
                             }
-                        case "свободно":
+                        case "парковка":
                             {
                                 DataBaseCenter dataBase = DataBaseCenter.Create();
                                 string str = dataBase.BusyParking();
@@ -42,36 +50,60 @@ namespace Паркинг
                             }
                         case "счет":
                             {
-                                /*DataBaseCenter dataBase = DataBaseCenter.Create();
-                                string str = dataBase.BusyParking();
-                                vkMessages.SendMsg(msg.FromId.Value, str);*/
+                                DataBaseCenter dataBase = DataBaseCenter.Create();
+                                System.Data.DataTable dt = dataBase.GetDataTable(
+                                    string.Format(
+                                        "Select Клиенты.id, балансСчета FROM Клиенты JOIN КонтактыКлиентов ON КонтактыКлиентов.клиент=Клиенты.id WHERE КонтактыКлиентов.контакт='{0}'",
+                                        msg.FromId.Value));
+                                if (dt.Rows.Count > 0)
+                                {
+                                    vkMessages.SendMsg(
+                                        msg.FromId.Value, 
+                                        string.Format(
+                                            @"Номер вашего счета: ЛС{0}
+Баланс вашего счета: {1}", 
+                                            dt.Rows[0].ItemArray[0].ToString(), 
+                                            dt.Rows[0].ItemArray[1].ToString()));
+                                }
+                                else
+                                {
+                                    vkMessages.SendMsg(msg.FromId.Value, "Необходимо зарегистрировать ваш ID в системе, обратитесь к оператору!");
+                                }
+
                                 break;
                             }
                         case "отчет":
                             {
-                                switch (cmd[1])
+                                try
                                 {
-                                    case "платежи":
-                                        {
-                                            Report report = new Report();
-                                            string path = report.CreateReportTransaction(msg.FromId.Value, cmd[2], cmd[3]);
-                                            vkMessages.SendMsg(msg.FromId.Value, "Отчет готов", path);
-                                            System.IO.File.Delete(path);
-                                            break;
-                                        }
-                                    case "парковка":
-                                        {
-                                            Report report = new Report();
-                                            string path = report.CreateReportTransit(msg.FromId.Value, cmd[2], cmd[3]);
-                                            vkMessages.SendMsg(msg.FromId.Value, "Отчет готов", path);
-                                            System.IO.File.Delete(path);
-                                            break;
-                                        }
-                                    default:
-                                        {
-                                            ErrMsg(msg.FromId.Value, msg.Id.Value);
-                                            break;
-                                        }
+                                    switch (cmd[1])
+                                    {
+                                        case "платежи":
+                                            {
+                                                Report report = new Report();
+                                                string path = report.CreateReportTransaction(msg.FromId.Value, cmd[2], cmd[3]);
+                                                vkMessages.SendMsg(msg.FromId.Value, "Отчет готов", path);
+                                                System.IO.File.Delete(path);
+                                                break;
+                                            }
+                                        case "парковка":
+                                            {
+                                                Report report = new Report();
+                                                string path = report.CreateReportTransit(msg.FromId.Value, cmd[2], cmd[3]);
+                                                vkMessages.SendMsg(msg.FromId.Value, "Отчет готов", path);
+                                                System.IO.File.Delete(path);
+                                                break;
+                                            }
+                                        default:
+                                            {
+                                                ErrMsg(msg.FromId.Value, msg.Id.Value);
+                                                break;
+                                            }
+                                    }
+                                }
+                                catch
+                                {
+                                    vkMessages.SendMsg(msg.FromId.Value, "Необходимо зарегистрировать ваш ID в системе, обратитесь к оператору!");
                                 }
 
                                 break;
@@ -98,7 +130,7 @@ namespace Паркинг
             {
                 if (longPoolWatcher == null)
                 {
-                    LongPoolWatcher longPoolWatcher = new LongPoolWatcher(vkAcc);
+                    longPoolWatcher = new LongPoolWatcher(vkAcc);
                     longPoolWatcher.NewMessages += MessagesRecievedDelegate;
                 }
 

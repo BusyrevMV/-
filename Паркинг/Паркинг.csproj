@@ -139,11 +139,29 @@
     <Compile Include="Report.cs" />
     <Compile Include="Rights.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="WinFormAvto.cs">
+    <Compile Include="WinFormAddPay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WinFormAvto.Designer.cs">
-      <DependentUpon>WinFormAvto.cs</DependentUpon>
+    <Compile Include="WinFormAddPay.Designer.cs">
+      <DependentUpon>WinFormAddPay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinFormAddTransit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinFormAddTransit.Designer.cs">
+      <DependentUpon>WinFormAddTransit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinFormAuth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinFormAuth.Designer.cs">
+      <DependentUpon>WinFormAuth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinFormDataAvto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinFormDataAvto.Designer.cs">
+      <DependentUpon>WinFormDataAvto.cs</DependentUpon>
     </Compile>
     <Compile Include="WinFormDataClients.cs">
       <SubType>Form</SubType>
@@ -193,6 +211,12 @@
     <Compile Include="WinFormDataUsers.Designer.cs">
       <DependentUpon>WinFormDataUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinFormImageViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinFormImageViewer.Designer.cs">
+      <DependentUpon>WinFormImageViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinFormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,14 +235,29 @@
     <Compile Include="VkControl.cs" />
     <Compile Include="VkMessages.cs" />
     <Compile Include="ParkingControl.cs" />
+    <Compile Include="WinFormPassEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinFormPassEdit.Designer.cs">
+      <DependentUpon>WinFormPassEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinFormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WinFormSettings.Designer.cs">
       <DependentUpon>WinFormSettings.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="WinFormAvto.resx">
-      <DependentUpon>WinFormAvto.cs</DependentUpon>
+    <EmbeddedResource Include="WinFormAddPay.resx">
+      <DependentUpon>WinFormAddPay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFormAddTransit.resx">
+      <DependentUpon>WinFormAddTransit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFormAuth.resx">
+      <DependentUpon>WinFormAuth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFormDataAvto.resx">
+      <DependentUpon>WinFormDataAvto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinFormDataClients.resx">
       <DependentUpon>WinFormDataClients.cs</DependentUpon>
@@ -244,6 +283,9 @@
     <EmbeddedResource Include="WinFormDataUsers.resx">
       <DependentUpon>WinFormDataUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WinFormImageViewer.resx">
+      <DependentUpon>WinFormImageViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinFormMain.resx">
       <DependentUpon>WinFormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +298,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WinFormPassEdit.resx">
+      <DependentUpon>WinFormPassEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinFormSettings.resx">
       <DependentUpon>WinFormSettings.cs</DependentUpon>
     </EmbeddedResource>

@@ -63,7 +63,9 @@ namespace Паркинг
                     ApplicationId = appId,
                     Login = login,
                     Password = pass,
+                    AccessToken = str[3],
                     Settings = Settings.All
+                    // "11bd2df5a49177d00177106e29aa6dbed820b6c720c50f2ad28c09e189924e1f84570fff735d9f48bcd7c"
                 });
             }
             catch
