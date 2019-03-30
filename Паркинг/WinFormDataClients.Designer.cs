@@ -70,11 +70,6 @@
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.клиентыDataGridView = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.фиоDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.серияНомерВУDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.балансСчетаDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.адресDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.клиентыBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.клиентыBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
@@ -94,6 +89,11 @@
             this.контактыклиентовTableAdapter = new Паркинг.parkingDataSetTableAdapters.контактыклиентовTableAdapter();
             this.автоTableAdapter = new Паркинг.parkingDataSetTableAdapters.автоTableAdapter();
             this.списоквидовавтоTableAdapter = new Паркинг.parkingDataSetTableAdapters.списоквидовавтоTableAdapter();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.фиоDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.серияНомерВУDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.балансСчетаDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.адресDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.автоDataGridView)).BeginInit();
@@ -508,45 +508,6 @@
             this.клиентыDataGridView.TabIndex = 0;
             this.клиентыDataGridView.SelectionChanged += new System.EventHandler(this.клиентыDataGridView_SelectionChanged);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // фиоDataGridViewTextBoxColumn
-            // 
-            this.фиоDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.фиоDataGridViewTextBoxColumn.DataPropertyName = "фио";
-            this.фиоDataGridViewTextBoxColumn.HeaderText = "ФИО";
-            this.фиоDataGridViewTextBoxColumn.Name = "фиоDataGridViewTextBoxColumn";
-            this.фиоDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // серияНомерВУDataGridViewTextBoxColumn
-            // 
-            this.серияНомерВУDataGridViewTextBoxColumn.DataPropertyName = "серияНомер_ВУ";
-            this.серияНомерВУDataGridViewTextBoxColumn.HeaderText = "Серия/Номер ВУ";
-            this.серияНомерВУDataGridViewTextBoxColumn.Name = "серияНомерВУDataGridViewTextBoxColumn";
-            this.серияНомерВУDataGridViewTextBoxColumn.ReadOnly = true;
-            this.серияНомерВУDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // балансСчетаDataGridViewTextBoxColumn
-            // 
-            this.балансСчетаDataGridViewTextBoxColumn.DataPropertyName = "балансСчета";
-            this.балансСчетаDataGridViewTextBoxColumn.HeaderText = "Баланс счета";
-            this.балансСчетаDataGridViewTextBoxColumn.Name = "балансСчетаDataGridViewTextBoxColumn";
-            this.балансСчетаDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // адресDataGridViewTextBoxColumn
-            // 
-            this.адресDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.адресDataGridViewTextBoxColumn.DataPropertyName = "адрес";
-            this.адресDataGridViewTextBoxColumn.HeaderText = "Адрес";
-            this.адресDataGridViewTextBoxColumn.Name = "адресDataGridViewTextBoxColumn";
-            this.адресDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // клиентыBindingSource
             // 
             this.клиентыBindingSource.DataMember = "клиенты";
@@ -710,6 +671,45 @@
             // списоквидовавтоTableAdapter
             // 
             this.списоквидовавтоTableAdapter.ClearBeforeFill = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // фиоDataGridViewTextBoxColumn
+            // 
+            this.фиоDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.фиоDataGridViewTextBoxColumn.DataPropertyName = "фио";
+            this.фиоDataGridViewTextBoxColumn.HeaderText = "ФИО";
+            this.фиоDataGridViewTextBoxColumn.Name = "фиоDataGridViewTextBoxColumn";
+            this.фиоDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // серияНомерВУDataGridViewTextBoxColumn
+            // 
+            this.серияНомерВУDataGridViewTextBoxColumn.DataPropertyName = "серияНомер_ВУ";
+            this.серияНомерВУDataGridViewTextBoxColumn.HeaderText = "Серия/Номер ВУ";
+            this.серияНомерВУDataGridViewTextBoxColumn.Name = "серияНомерВУDataGridViewTextBoxColumn";
+            this.серияНомерВУDataGridViewTextBoxColumn.ReadOnly = true;
+            this.серияНомерВУDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // балансСчетаDataGridViewTextBoxColumn
+            // 
+            this.балансСчетаDataGridViewTextBoxColumn.DataPropertyName = "балансСчета";
+            this.балансСчетаDataGridViewTextBoxColumn.HeaderText = "Баланс счета";
+            this.балансСчетаDataGridViewTextBoxColumn.Name = "балансСчетаDataGridViewTextBoxColumn";
+            this.балансСчетаDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // адресDataGridViewTextBoxColumn
+            // 
+            this.адресDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.адресDataGridViewTextBoxColumn.DataPropertyName = "адрес";
+            this.адресDataGridViewTextBoxColumn.HeaderText = "Адрес";
+            this.адресDataGridViewTextBoxColumn.Name = "адресDataGridViewTextBoxColumn";
+            this.адресDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // WinFormDataClients
             // 

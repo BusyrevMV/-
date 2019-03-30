@@ -135,5 +135,21 @@ namespace Паркинг
             }
             catch { }
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            DataBaseCenter dataBase = DataBaseCenter.Create();
+            if (!dataBase.CheckRigth(user, Rights.настройки))
+            {
+                MessageBox.Show("Недостаточно прав!", "Предупреждение");
+                return;
+            }
+
+            try
+            {
+                (new WinFormQiwiSetting()).Show();
+            }
+            catch { }
+        }
     }
 }

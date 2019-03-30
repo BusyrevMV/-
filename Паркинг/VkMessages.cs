@@ -60,25 +60,39 @@ namespace Паркинг
 
         public void SendMsg(long id, string msg)
         {
-            vkAcc.Messages.SendAsync(new MessagesSendParams
+            try
             {
-                UserId = id,
-                Message = msg
-            });
+                vkAcc.Messages.SendAsync(new MessagesSendParams
+                {
+                    UserId = id,
+                    Message = msg
+                });
+            }
+            catch { }
         }
 
         public void SendMsg(long id, string msg, long answer)
         {
-            vkAcc.Messages.SendAsync(new MessagesSendParams
+            try
             {
-                UserId = id,
-                Message = msg,
-                ForwardMessages = new long[] { answer }
-            });
+                vkAcc.Messages.SendAsync(new MessagesSendParams
+                {
+                    UserId = id,
+                    Message = msg,
+                    ForwardMessages = new long[] { answer }
+                });
+            }
+            catch { }
         }
 
         public void SendMsg(long id, string msg, Image img)
         {
+            if (img == null)
+            {
+                SendMsg(id, msg);
+                return;
+            }
+
             ReadOnlyCollection<Photo> photo;
             try
             {
@@ -89,48 +103,63 @@ namespace Паркинг
                 SendMsg(id, msg);
                 return;
             }
-
-            vkAcc.Messages.SendAsync(new MessagesSendParams
+            try
             {
-                UserId = id,
-                Message = msg,
-                Attachments = photo
-            });
+                vkAcc.Messages.SendAsync(new MessagesSendParams
+                {
+                    UserId = id,
+                    Message = msg,
+                    Attachments = photo
+                });
+            }
+            catch { }
         }
 
         public void SendMsg(long id, string msg, Image img, long answer)
         {
-            ReadOnlyCollection<Photo> photo = ImageToVK(img);
-            vkAcc.Messages.SendAsync(new MessagesSendParams
+            try
             {
-                UserId = id,
-                Message = msg,
-                Attachments = photo,
-                ForwardMessages = new long[] { answer }
-            });
+                ReadOnlyCollection<Photo> photo = ImageToVK(img);
+                vkAcc.Messages.SendAsync(new MessagesSendParams
+                {
+                    UserId = id,
+                    Message = msg,
+                    Attachments = photo,
+                    ForwardMessages = new long[] { answer }
+                });
+            }
+            catch { }
         }
 
         public void SendMsg(long id, string msg, string pathDoc)
         {
-            ReadOnlyCollection<Document> document = DocsToVK(pathDoc);
-            vkAcc.Messages.SendAsync(new MessagesSendParams
+            try
             {
-                UserId = id,
-                Message = msg,
-                Attachments = document
-            });
+                ReadOnlyCollection<Document> document = DocsToVK(pathDoc);
+                vkAcc.Messages.SendAsync(new MessagesSendParams
+                {
+                    UserId = id,
+                    Message = msg,
+                    Attachments = document
+                });
+            }
+            catch { }
         }
 
         public void SendMsg(long id, string msg, string pathDoc, long answer)
         {
-            ReadOnlyCollection<Document> document = DocsToVK(pathDoc);
-            vkAcc.Messages.SendAsync(new MessagesSendParams
+            try
             {
-                UserId = id,
-                Message = msg,
-                Attachments = document,
-                ForwardMessages = new long[] { answer }
-            });
+                ReadOnlyCollection<Document> document = DocsToVK(pathDoc);
+                vkAcc.Messages.SendAsync(new MessagesSendParams
+                {
+                    UserId = id,
+                    Message = msg,
+                    Attachments = document,
+                    ForwardMessages = new long[] { answer }
+                });
+            }
+            catch { }
         }
     }
 }

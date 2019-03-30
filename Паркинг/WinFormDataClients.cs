@@ -26,6 +26,8 @@ namespace Паркинг
                 toolStripButton2.Enabled = true;
                 контактыклиентовDataGridView.ReadOnly = false;
             }
+
+            клиентыDataGridView.Columns[3].ReadOnly = true;
         }
 
         private void DataGridView_DataError(object sender, DataGridViewDataErrorEventArgs anError)
@@ -39,7 +41,6 @@ namespace Паркинг
             this.Validate();
             this.клиентыBindingSource.EndEdit();
             this.tableAdapterManager.клиентыTableAdapter.Update(this.parkingDataSet.клиенты);
-            this.клиентыTableAdapter.Fill(this.parkingDataSet.клиенты);
         }
 
         private void WinFormDataClients_Load(object sender, EventArgs e)

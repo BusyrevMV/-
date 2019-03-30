@@ -241,6 +241,12 @@
     <Compile Include="WinFormPassEdit.Designer.cs">
       <DependentUpon>WinFormPassEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinFormQiwiSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinFormQiwiSetting.Designer.cs">
+      <DependentUpon>WinFormQiwiSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinFormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,6 +306,9 @@
     </Compile>
     <EmbeddedResource Include="WinFormPassEdit.resx">
       <DependentUpon>WinFormPassEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFormQiwiSetting.resx">
+      <DependentUpon>WinFormQiwiSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinFormSettings.resx">
       <DependentUpon>WinFormSettings.cs</DependentUpon>

@@ -7,6 +7,7 @@ using VkNet;
 using VkNet.Model;
 using VkNet.Exception;
 using VkNet.Model.RequestParams;
+using VkNet.Enums.Filters;
 
 namespace Паркинг
 {
@@ -76,7 +77,20 @@ namespace Паркинг
                 }
                 catch (Exception ex)
                 {
-                    errorLog += string.Format("{0} - {1}{2}", c, ex.Message, Environment.NewLine);
+                    DataBaseCenter dataBase = DataBaseCenter.Create();
+                    System.Data.DataTable dataTable = dataBase.GetDataTable("SELECT значение FROM Настройки WHERE название='vk'");                                          
+                    string[] str = dataTable.Rows[0].ItemArray[0].ToString().Split("|".ToCharArray());
+                    ulong appId;
+                    ulong.TryParse(str[0], out appId);
+                    vkAcc.Authorize(new ApiAuthParams
+                    {
+                        ApplicationId = appId,
+                        Login = str[1],
+                        Password = str[2],
+                        AccessToken = str[3],
+                        Settings = Settings.All
+                    });
+                    try { GetLongPoolServer(null); } catch { };
                 }
             }
 
@@ -85,9 +99,7 @@ namespace Паркинг
                 Pts = history.NewPts;
                 foreach (var m in history.Messages)
                     m.FromId = m.Type == VkNet.Enums.MessageType.Sended ? vkAcc.UserId : m.UserId;
-            }
-            else
-                throw new NotImplementedException(errorLog);
+            }            
 
             return history;
         }
@@ -99,7 +111,7 @@ namespace Паркинг
         private async void _watchAsync(object state)
         {
             var history = await GetLongPoolHistoryAsync();
-            if (history.Messages.Count > 0)
+            if (history != null && history.Messages.Count > 0)
             {
                 _currentSleepSteps = 1;
                 if (NewMessages != null)

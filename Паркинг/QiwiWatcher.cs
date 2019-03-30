@@ -19,10 +19,9 @@ namespace Паркинг
         {
             Encoding = Encoding.UTF8
         };
-        public delegate void QiwiHistoryDelegate(QiwiHistory history);
         public bool Active { get; private set; }
         private Timer watchTimer;
-        public event QiwiHistoryDelegate NewPayment;
+        private DataBaseCenter dataBase = DataBaseCenter.Create();
 
         public QiwiWatcher()
         {
@@ -44,8 +43,8 @@ namespace Паркинг
             string url = string.Format(
             qiwiUrl,
             phone,
-            dateTime.Value.AddMinutes(-2).ToString("yyyy-MM-ddTHH:mm:sszzz").Replace(":", "%3A").Replace("+", "%2B"),
-            DateTime.Now.AddMinutes(-0.5).ToString("yyyy-MM-ddTHH:mm:sszzz").Replace(":", "%3A").Replace("+", "%2B"));
+            dateTime.Value.AddMinutes(-1.2).ToString("yyyy-MM-ddTHH:mm:sszzz").Replace(":", "%3A").Replace("+", "%2B"),
+            DateTime.Now.AddMinutes(0).ToString("yyyy-MM-ddTHH:mm:sszzz").Replace(":", "%3A").Replace("+", "%2B"));
             var response = webClient.DownloadStringTaskAsync(url);
             response.Wait();
             return JsonConvert.DeserializeObject<QiwiHistory>(response.Result);
@@ -58,10 +57,39 @@ namespace Паркинг
 
         private async void watchAsync(object state)
         {
-            var qiwiHistory = await GetQiwiHistoryyAsync();
-            if (qiwiHistory.history.Count > 0)
+            try
             {
-                NewPayment(qiwiHistory);
+                var qiwiHistory = await GetQiwiHistoryyAsync();
+                if (qiwiHistory != null && qiwiHistory.history.Count > 0)
+                {
+                    foreach (Datum pay in qiwiHistory.history)
+                    {
+                        string client = pay.comment;
+                        if (client.IndexOf("ЛС") >= 0 && pay.type.ToLower() == "in")
+                        {
+                            client = client.Remove(0, client.IndexOf("ЛС") + 2);
+                            if (client.IndexOf(" ") >= 0)
+                            {
+                                client = client.Remove(client.IndexOf(" "));
+                            }
+
+                            dataBase.RunCommand(string.Format(
+                            "INSERT INTO ИсторияТранзакций (клиент, операция, сумма, номерТранзакции) VALUES('{0}', 'приход', '{1}', '{2}')",
+                            client,
+                            pay.sum.amount,
+                            pay.trmTxnId));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                DataTable dataTable = dataBase.GetDataTable("SELECT дата FROM ИсторияТранзакций WHERE номерТранзакции is not null and операция='приход' ORDER BY дата DESC LIMIT 1");
+                if (dataTable.Rows.Count > 0)
+                {
+                    DateTime dateTime = DateTime.ParseExact(dataTable.Rows[0].ItemArray[0].ToString(), "yyyy-MM-dd HH:mm:ss", null);
+                    try { var qiwiHistory = await GetQiwiHistoryyAsync(dateTime); } catch { };
+                }
             }
         }
 
@@ -71,21 +99,37 @@ namespace Паркинг
             {
                 return;
             }
-
-            DataBaseCenter dataBase = DataBaseCenter.Create();
+            
             DataTable dataTable = dataBase.GetDataTable("SELECT дата FROM ИсторияТранзакций WHERE номерТранзакции is not null and операция='приход' ORDER BY дата DESC LIMIT 1");
             if (dataTable.Rows.Count > 0)
             {
                 DateTime dateTime = DateTime.ParseExact(dataTable.Rows[0].ItemArray[0].ToString(), "yyyy-MM-dd HH:mm:ss", null);
                 var qiwiHistory = await GetQiwiHistoryyAsync(dateTime);
                 if (qiwiHistory.history.Count > 0)
-                {
-                    NewPayment(qiwiHistory);
+                {                    
+                    foreach (Datum pay in qiwiHistory.history)
+                    {
+                        string client = pay.comment;
+                        if (client.IndexOf("ЛС") >= 0 && pay.type.ToLower() == "in")
+                        {
+                            client = client.Remove(0, client.IndexOf("ЛС") + 2);
+                            if (client.IndexOf(" ") >= 0)
+                            {
+                                client = client.Remove(client.IndexOf(" "));
+                            }
+
+                            dataBase.RunCommand(string.Format(
+                            "INSERT INTO ИсторияТранзакций (клиент, операция, сумма, номерТранзакции) VALUES('{0}', 'приход', '{1}', '{2}')",
+                            client,
+                            pay.sum.amount,
+                            pay.trmTxnId));
+                        }                        
+                    }
                 }
             }            
 
             Active = true;
-            watchTimer = new Timer(new TimerCallback(watchAsync), null, 1000, Timeout.Infinite);
+            watchTimer = new Timer(new TimerCallback(watchAsync), null, 60000, Timeout.Infinite);
         }
 
         public void Stop()

@@ -56,13 +56,12 @@ namespace Паркинг
 
         public int RunCommand(string sql, Bitmap bitmap)
         {
-            if (bitmap == null)
-            {
-                bitmap = new Bitmap(100, 100);
-            }
-
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            if (bitmap != null)
+            {
+                bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }            
+            
             lock (dataBaseCenter)
             {
                 MySqlCommand sqlCommand = new MySqlCommand();
@@ -105,7 +104,7 @@ WHERE
                             dataTable.Rows[i].ItemArray[0]));
                 }
 
-                if (dataTable.Rows[i].ItemArray[2].ToString() != "" && dataTable.Rows[i].ItemArray[1].ToString() == "")
+                if (dataTable.Rows[i].ItemArray[2].ToString() != "" && dataTable.Rows[i].ItemArray[1].ToString() != "")
                 {
                     sb.AppendLine(string.Format(
                         "Авто {0} уехало {1}",
@@ -299,7 +298,7 @@ LIMIT 1",
                             dateTime.ToString("yyyy-MM-dd HH:mm"),
                             string.Format("{0:F2} ", price).Replace(",", "."),
                             dataTable.Rows[0].ItemArray[1].ToString()),
-                        number.photo.Bitmap);
+                        number.photo == null ? null : number.photo.Bitmap);
                     RunCommand(
                         string.Format(
                             "UPDATE Парковки SET занято = Парковки.занято - 1 WHERE Парковки.id = '{0}'",
@@ -313,7 +312,7 @@ LIMIT 1",
                             dateTime.ToString("yyyy-MM-dd HH:mm"),
                             avto,
                             user.parking),
-                        number.photo.Bitmap);
+                        number.photo == null ? null : number.photo.Bitmap);
                     RunCommand(
                         string.Format(
                             "UPDATE Парковки SET занято = Парковки.занято + 1 WHERE Парковки.id = '{0}'",
@@ -537,6 +536,6 @@ LIMIT 1",
                         "INSERT INTO ИсторияТранзакций (клиент, операция, сумма) VALUES('{0}', 'приход', '{1}')",
                         id,
                         money));
-        }
+        }        
     }
 }

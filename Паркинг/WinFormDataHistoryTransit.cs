@@ -41,10 +41,10 @@ namespace Паркинг
         {
             историяпроездовBindingSource.Filter = string.Format(
                 "(въехалДата >= '{0}' and въехалДата <= '{1}') or (выехалДата >= '{2}' and выехалДата <= '{3}')",
-                dateTimePicker1.Value.ToString("yyyy-mm-dd HH:mm"),
-                dateTimePicker2.Value.ToString("yyyy-mm-dd HH:mm"),
-                dateTimePicker1.Value.ToString("yyyy-mm-dd HH:mm"),
-                dateTimePicker2.Value.ToString("yyyy-mm-dd HH:mm"));
+                dateTimePicker1.Value.ToString(),
+                dateTimePicker2.Value.ToString(),
+                dateTimePicker1.Value.ToString(),
+                dateTimePicker2.Value.ToString());
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -54,14 +54,20 @@ namespace Паркинг
 
         private void историяпроездовDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if ((e.ColumnIndex == 3 || e.ColumnIndex == 5) && историяпроездовDataGridView.CurrentRow.Cells[e.ColumnIndex].Value.ToString() != "")
+            if ((e.ColumnIndex == 3 || e.ColumnIndex == 5) && историяпроездовDataGridView.CurrentRow.Cells[e.ColumnIndex + 1].Value.ToString() != "")
             {
                 byte [] arr = (byte[])историяпроездовDataGridView.CurrentRow.Cells[e.ColumnIndex + 1].Value;
                 System.IO.MemoryStream stream = new System.IO.MemoryStream(arr);
                 stream.Position = 0;
+                if (stream.Length == 0)
+                {
+                    MessageBox.Show("Изображение отсутствует.", "Ошибка");
+                    return;
+                }
+
                 Bitmap bmp = new Bitmap(stream);
                 (new WinFormImageViewer(bmp)).Show();                
-            }
+            }           
         }
     }
 }

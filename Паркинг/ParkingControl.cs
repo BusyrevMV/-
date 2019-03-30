@@ -16,6 +16,7 @@ namespace Паркинг
         private VkControl vkControl = new VkControl();
         private DataBaseCenter dataBase = DataBaseCenter.Create();
         private User user;
+        private QiwiWatcher qiwiWatcher;
 
         public delegate void NewNotyf(Number number, HistoryTransit info);
         public event NewNotyf NewNotyfNumber;
@@ -57,6 +58,12 @@ namespace Паркинг
                 DataBaseCenter dataBase = DataBaseCenter.Create();
                 if (dataBase.CheckRigth(user, Rights.чатБот))
                     vkControl.vkBot.BotStart();
+            }
+
+            if (dataBase.CheckRigth(user, Rights.qiwiБот))
+            {
+                qiwiWatcher = new QiwiWatcher();
+                qiwiWatcher.StartAsync();
             }
 
             Task.Run(() => 
@@ -202,7 +209,7 @@ namespace Паркинг
                         number.text,
                         number.direction == 1 ? "выезд" : (number.direction == -1 ? "въезд" : "проезд"),
                         (historyTransit != null && historyTransit.dateExit != "") ? ". Стоимость составила " + historyTransit.cost : ""),
-                    number.photo.Bitmap);
+                    number.photo == null ? null : number.photo.Bitmap);
             }
         }
     }
